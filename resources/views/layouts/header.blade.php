@@ -1,17 +1,17 @@
-<header class="app-header fixed-top">	   	            
-        <div class="app-header-inner">  
+<header class="app-header fixed-top">
+        <div class="app-header-inner">
 	        <div class="container-fluid py-2">
-		        <div class="app-header-content"> 
+		        <div class="app-header-content">
 		            <div class="row justify-content-between align-items-center">
-			        
+
 				    <div class="col-auto">
 					    <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
 						    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
 					    </a>
 				    </div><!--//col-->
-		            
+
 		            <div class="app-utilities col-auto">
-			            <div class="app-utility-item app-notifications-dropdown dropdown">    
+			            <div class="app-utility-item app-notifications-dropdown dropdown">
 				            <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" title="Notifications">
 					            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 					            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
 								</svg>
 					            <span class="icon-badge">3</span>
 					        </a><!--//dropdown-toggle-->
-					        
+
 					        <div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
 					            <div class="dropdown-menu-header p-3">
 						            <h5 class="dropdown-menu-title mb-0">Notifications</h5>
@@ -32,11 +32,11 @@
 										       <img class="profile-image" src="assets/images/profiles/profile-1.png" alt="">
 									        </div><!--//col-->
 									        <div class="col">
-										        <div class="info"> 
+										        <div class="info">
 											        <div class="desc">Amy shared a file with you. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
 											        <div class="meta"> 2 hrs ago</div>
 										        </div>
-									        </div><!--//col--> 
+									        </div><!--//col-->
 								        </div><!--//row-->
 								        <a class="link-mask" href="notifications.html"></a>
 							       </div><!--//item-->
@@ -51,7 +51,7 @@
 										        </div>
 									        </div><!--//col-->
 									        <div class="col">
-										        <div class="info"> 
+										        <div class="info">
 											        <div class="desc">You have a new invoice. Proin venenatis interdum est.</div>
 											        <div class="meta"> 1 day ago</div>
 										        </div>
@@ -69,7 +69,7 @@
 										        </div>
 									        </div><!--//col-->
 									        <div class="col">
-										        <div class="info"> 
+										        <div class="info">
 											        <div class="desc">Your report is ready. Proin venenatis interdum est.</div>
 											        <div class="meta"> 3 days ago</div>
 										        </div>
@@ -83,21 +83,21 @@
 										       <img class="profile-image" src="assets/images/profiles/profile-2.png" alt="">
 									        </div><!--//col-->
 									        <div class="col">
-										        <div class="info"> 
+										        <div class="info">
 											        <div class="desc">James sent you a new message.</div>
 											        <div class="meta"> 7 days ago</div>
 										        </div>
-									        </div><!--//col--> 
+									        </div><!--//col-->
 								        </div><!--//row-->
 								        <a class="link-mask" href="notifications.html"></a>
 							       </div><!--//item-->
 						        </div><!--//dropdown-menu-content-->
-						        
+
 						        <div class="dropdown-menu-footer p-2 text-center">
 							        <a href="notifications.html">View all</a>
 						        </div>
-															
-							</div><!--//dropdown-menu-->					        
+
+							</div><!--//dropdown-menu-->
 				        </div><!--//app-utility-item-->
 			            <div class="app-utility-item">
 				            <a href="settings.html" title="Settings">
@@ -108,7 +108,7 @@
 								</svg>
 					        </a>
 					    </div><!--//app-utility-item-->
-			            
+
 			            <div class="app-utility-item app-user-dropdown dropdown">
 				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
@@ -122,24 +122,24 @@
 									</form>
 								</li>
 							</ul>
-			            </div><!--//app-user-dropdown--> 
+			            </div><!--//app-user-dropdown-->
 		            </div><!--//app-utilities-->
 		        </div><!--//row-->
 	            </div><!--//app-header-content-->
 	        </div><!--//container-fluid-->
         </div><!--//app-header-inner-->
-        <div id="app-sidepanel" class="app-sidepanel"> 
+        <div id="app-sidepanel" class="app-sidepanel">
 	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
 	        <div class="sidepanel-inner d-flex flex-column">
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 		        <div class="app-branding">
-		            <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"><span class="logo-text">PORTAL</span></a>
-	
-		        </div><!--//app-branding-->  
-		        
+		            <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="{{ asset('Arsha/assets/img/logo.png') }}" alt="logo"><span class="logo-text">APRI</span></a>
+
+		        </div><!--//app-branding-->
+
 				@include('layouts.sidebar')
 
-				
+
 			    <div class="app-sidepanel-footer">
 				    <nav class="app-nav app-nav-footer">
 					    <ul class="app-menu footer-menu list-unstyled">
@@ -161,7 +161,7 @@
 					    </ul><!--//footer-menu-->
 				    </nav>
 			    </div><!--//app-sidepanel-footer-->
-		       
+
 	        </div><!--//sidepanel-inner-->
 	    </div><!--//app-sidepanel-->
     </header>

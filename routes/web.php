@@ -25,6 +25,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/anggota', [AnggotaController::class, 'show_table_anggota'])->name('dashboard.anggota');
     Route::post('/anggota/{id}/accept', [AnggotaController::class, 'accept'])->name('anggota.accept');
     Route::post('/anggota/daftar', [AnggotaController::class, 'daftar_anggota'])->name('daftar-anggota.store');
+    Route::get('/kartu_anggota/{id}', [AnggotaController::class, 'show_kartu_anggota'])->name('kartu_anggota');
 
     // Artikel
     Route::get('/artikel', [ArtikelController::class, 'show_table_artikel'])->name('dashboard.artikel');

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function show_dashboard() {
+    public function show_dashboard()
+    {
         $accept = data_anggota::whereNotNull('accept')->count();
         $pending = data_anggota::whereNull('accept')->count();
         $total = $accept + $pending;
@@ -27,6 +28,6 @@ class DashboardController extends Controller
         $labels = $domisili->pluck('kota_kabupaten');
         $counts = $domisili->pluck('total');
 
-        return view('dashboard.dashboard', compact('accept', 'pending', 'persenPending', 'persenAktif', 'artikelTampil', 'artikelArsip', 'domisili','labels','counts'));
+        return view('dashboard.dashboard', compact('accept', 'pending', 'persenPending', 'persenAktif', 'artikelTampil', 'artikelArsip', 'domisili', 'labels', 'counts'));
     }
 }

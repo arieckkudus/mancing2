@@ -40,7 +40,7 @@ class ArtikelController extends Controller
     }
 
     public function form_artikel() {
-        
+
         return view('dashboard.form_artikel');
     }
 
@@ -67,14 +67,14 @@ class ArtikelController extends Controller
 
     public function daftar_artikel(Request $request)
     {
-        
+
         try {
             $validated = $request->validate([
                 'title'   => 'required|string|max:255',
                 'content' => 'nullable|string',
                 'pict'    => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             ]);
-    
+
             // siapkan data
             $data = [
                 'title'   => $validated['title'],
@@ -82,20 +82,20 @@ class ArtikelController extends Controller
                 'show'    => 'tampil',
                 'user_id' => Auth::id(),
             ];
-    
+
             if ($request->hasFile('pict')) {
                 $file      = $request->file('pict');
                 $filename  = time() . '_' . $file->getClientOriginalName();
-    
+
                 // simpan di public/storage/artikel
                 $file->move(public_path('storage/artikel'), $filename);
-    
+
                 // simpan path relatif ke DB
                 $data['pict'] = 'storage/artikel/' . $filename;
             }
-    
+
             Artikel::create($data);
-    
+
             return redirect()->route('dashboard.artikel')->with('success', 'Artikel berhasil ditambahkan!');
         } catch (\Throwable $th) {
             //throw $th;
