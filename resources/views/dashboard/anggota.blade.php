@@ -22,13 +22,26 @@
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between mb-3 flex-wrap">
-                        <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2"
-                            style="max-width: 300px;">
-                            <input type="text" name="search" class="form-control me-2" placeholder="Cari anggota..."
-                                value="{{ request('search') }}">
-                            <button type="submit" class="btn btn-primary btn-sm">Cari</button>
-                        </form>
-                    </div>
+                    {{-- Form Pencarian --}}
+                    <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2" style="max-width: 300px;">
+                        <input type="text" name="search" class="form-control me-2" placeholder="Cari anggota..."
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+                    </form>
+
+                    {{-- Dropdown Filter --}}
+                    <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2">
+                        {{-- kalau ada search, ikutkan biar ga hilang --}}
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+
+                        <select name="accept_filter" class="form-select me-2" onchange="this.form.submit()">
+                            <option value="">-- Semua Data --</option>
+                            <option value="filled" {{ request('accept_filter') == 'filled' ? 'selected' : '' }}>Anggota Diterima</option>
+                            <option value="null" {{ request('accept_filter') == 'null' ? 'selected' : '' }}>Menunggu keanggotaan</option>
+                        </select>
+                    </form>
+                </div>
+
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped align-middle">

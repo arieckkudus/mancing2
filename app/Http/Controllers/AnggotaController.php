@@ -19,9 +19,9 @@ class AnggotaController extends Controller
 
     public function show_table_anggota(Request $request)
     {
-
         $query = data_anggota::query();
 
+        // Search filter
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -34,10 +34,18 @@ class AnggotaController extends Controller
             });
         }
 
+        // Accept filter
+        if ($request->accept_filter == 'filled') {
+            $query->whereNotNull('accept')->where('accept', '!=', '');
+        } elseif ($request->accept_filter == 'null') {
+            $query->whereNull('accept')->orWhere('accept', '');
+        }
+
         $anggota = $query->paginate(10)->appends($request->query());
 
         return view('dashboard.anggota', compact('anggota'));
     }
+
 
     public function daftar_anggota(Request $request)
     {
@@ -58,7 +66,29 @@ class AnggotaController extends Controller
                 'tipe_pendaftaran' => 'required|in:individu,komunitas',
                 'nama_komunitas' => 'max:255',
                 'jenis_pemancingan' => 'required|array',
+                'signature' => 'nullable|string',
             ]);
+
+            $signaturePath = null;
+
+            // kalau ada tanda tangan base64
+            if (!empty($validated['signature'])) {
+                $folderPath = storage_path('app/public/signatures/');
+
+                if (!file_exists($folderPath)) {
+                    mkdir($folderPath, 0777, true);
+                }
+
+                $image_parts = explode(";base64,", $validated['signature']);
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = uniqid() . '.png';
+                $filePath = $folderPath . $fileName;
+
+                file_put_contents($filePath, $image_base64);
+
+                // path yang disimpan ke db
+                $signaturePath = 'signatures/' . $fileName;
+            }
 
             // simpan ke database
             data_anggota::create([
@@ -79,6 +109,7 @@ class AnggotaController extends Controller
                 'jenis_pemancingan' => isset($validated['jenis_pemancingan'])
                     ? json_encode($validated['jenis_pemancingan'])
                     : null,
+                'signature' => $signaturePath,
             ]);
             Alert::success('Pendaftaran berhasil! Silakan menunggu admin untuk melakukan verifikasi.');
             return redirect()->route('landing_page');
@@ -104,7 +135,12 @@ class AnggotaController extends Controller
         try {
             $anggota = data_anggota::findOrFail($id);
             $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('dashboard.kartu_anggota_pdf', compact('anggota'))->setPaper('a4', 'landscape');
-            return $pdf->stream('kartu_anggota.pdf');
+            return response()->streamDownload(function () use ($pdf) {
+                echo $pdf->output();
+            }, 'kartu_anggota.pdf', [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="kartu_anggota.pdf"',
+            ]);
         } catch (\Throwable $th) {
             abort(404);
         }

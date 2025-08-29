@@ -39,9 +39,14 @@ class ArtikelController extends Controller
         return view('front.article', compact('artikel', 'artikel_baru'));
     }
 
-    public function form_artikel() {
+    public function form_artikel($id = null)
+    {
+        $artikel = null;
+        if ($id) {
+            $artikel = Artikel::findOrFail($id);
+        }
 
-        return view('dashboard.form_artikel');
+        return view('dashboard.form_artikel', compact('artikel'));
     }
 
     public function show_table_artikel(Request $request)
@@ -67,12 +72,12 @@ class ArtikelController extends Controller
 
     public function daftar_artikel(Request $request)
     {
-
         try {
             $validated = $request->validate([
                 'title'   => 'required|string|max:255',
                 'content' => 'nullable|string',
                 'pict'    => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+                'id'      => 'nullable|exists:artikel,id', // kalau update
             ]);
 
             // siapkan data
@@ -83,27 +88,29 @@ class ArtikelController extends Controller
                 'user_id' => Auth::id(),
             ];
 
+            // handle upload gambar
             if ($request->hasFile('pict')) {
                 $file      = $request->file('pict');
                 $filename  = time() . '_' . $file->getClientOriginalName();
 
-                // simpan di public/storage/artikel
                 $file->move(public_path('storage/artikel'), $filename);
-
-                // simpan path relatif ke DB
                 $data['pict'] = 'storage/artikel/' . $filename;
             }
 
-            Artikel::create($data);
+            // kalau ada id → update, kalau tidak → create baru
+            if ($request->filled('id')) {
+                Artikel::where('id', $request->id)->update($data);
+            } else {
+                Artikel::create($data);
+            }
 
-            return redirect()->route('dashboard.artikel')->with('success', 'Artikel berhasil ditambahkan!');
+            return redirect()->route('dashboard.artikel')->with('success', 'Artikel berhasil disimpan!');
         } catch (\Throwable $th) {
-            //throw $th;
             Alert::error('Error', $th->getMessage());
-
             return redirect()->back();
         }
     }
+
 
     public function hapus_artikel($id)
     {
@@ -135,5 +142,7 @@ class ArtikelController extends Controller
 
         return view('front.artikel_detail', compact('detail_artikel', 'artikel_baru'));
     }
+
+    
 
 }

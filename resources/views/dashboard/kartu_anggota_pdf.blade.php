@@ -211,22 +211,35 @@
                         <tr>
                             <td class="label">TTL</td>
                             <td class="colon">:</td>
-                            <td class="value">Jepara, 20 Maret 2018</td>
+                            <td class="value">{{ $anggota->tempat_lahir . ', ' . $anggota->tanggal_lahir }}</td>
                         </tr>
                         <tr>
-                            <td class="label">Umur</td>
+                            <td class="label">Jenis Kelamin</td>
                             <td class="colon">:</td>
-                            <td class="value">1 Tahun</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Agama</td>
-                            <td class="colon">:</td>
-                            <td class="value">Islam</td>
+                            <td class="value">
+                                @if ($anggota->gender == 'L')
+                                    Laki-Laki
+                                @elseif ($anggota->gender == 'P')
+                                    Perempuan
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Alamat</td>
                             <td class="colon">:</td>
-                            <td class="value">Jepara, Jawa Tengah</td>
+                            <td class="value">{{ $anggota->alamat . ', ' . $anggota->kota_kabupaten . ', ' . $anggota->provinsi }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Pekerjaan</td>
+                            <td class="colon">:</td>
+                            <td class="value">{{ $anggota->pekerjaan }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Komunitas</td>
+                            <td class="colon">:</td>
+                            <td class="value">{{ $anggota->nama_komunitas ?? '-' }}</td>
                         </tr>
                     </table>
                 </div>

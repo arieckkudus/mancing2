@@ -24,6 +24,7 @@ class data_anggota extends Model
         'accept',
         'nama_komunitas',
         'jenis_pemancingan',
+        'signature',
     ];
 
     protected $casts = [

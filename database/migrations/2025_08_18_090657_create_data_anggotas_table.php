@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('accept')->nullable();
             $table->enum('tipe_pendaftaran', ['individu', 'komunitas'])->default('individu');
             $table->string('nama_komunitas')->nullable();
+            $table->string('signature')->nullable();
 
             // jenis pemancingan yang diminati (boleh multi, jadi pakai json biar fleksibel)
             $table->json('jenis_pemancingan');

@@ -37,68 +37,50 @@
 	
 				    <div class="app-card-body">
                     <form class="settings-form" action="{{ route('daftar-artikel.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Judul Artikel</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                        </div>
+						@csrf
+						{{-- kalau edit, kirim id --}}
+						<input type="hidden" name="id" value="{{ $artikel->id ?? '' }}">
 
-                        <div class="mb-3">
-                            <label for="content" class="form-label">Isi Artikel</label>
-                            <textarea class="form-control summernote" id="content" name="content"></textarea>
-                        </div>
+						<div class="mb-3">
+							<label for="title" class="form-label">Judul Artikel</label>
+							<input type="text" 
+								class="form-control" 
+								id="title" 
+								name="title" 
+								value="{{ old('title', $artikel->title ?? '') }}" 
+								required>
+						</div>
 
-                        <div class="mb-3">
-                            <label for="pict" class="form-label">Gambar Thumbnail</label>
-                            <input type="file" class="form-control" id="pict" name="pict" accept="image/*">
-                        </div>
+						<div class="mb-3">
+							<label for="content" class="form-label">Isi Artikel</label>
+							<textarea class="form-control summernote" 
+									id="content" 
+									name="content">{{ old('content', $artikel->content ?? '') }}</textarea>
+						</div>
 
-                        <button type="submit" class="btn app-btn-primary">Simpan</button>
-                    </form>
+						<div class="mb-3">
+							<label for="pict" class="form-label">Gambar Thumbnail</label>
+							<input type="file" class="form-control" id="pict" name="pict" accept="image/*">
+							
+							{{-- kalau edit dan ada gambar --}}
+							@if(!empty($artikel->pict))
+								<div class="mt-2">
+									<small>Gambar sekarang:</small><br>
+									<img src="{{ asset($artikel->pict) }}" width="120" class="rounded">
+								</div>
+							@endif
+						</div>
+
+						<button type="submit" class="btn app-btn-primary">
+							{{ isset($artikel) ? 'Update' : 'Simpan' }}
+						</button>
+					</form>
+
                 </div>
 						    				    
 						</div><!--//app-card-->
 	                </div>
                 </div><!--//row-->
-                <hr class="my-4">
-                <div class="row g-4 settings-section">
-	                <div class="col-12 col-md-4">
-		                <h3 class="section-title">Notifications</h3>
-		                <div class="section-intro">Settings section intro goes here. Duis velit massa, faucibus non hendrerit eget.</div>
-	                </div>
-	                <div class="col-12 col-md-8">
-		                <div class="app-card app-card-settings shadow-sm p-4">						    
-						    <div class="app-card-body">
-							    <form class="settings-form">
-								    <div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-1" checked>
-										<label class="form-check-label" for="settings-switch-1">Project notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-2">
-										<label class="form-check-label" for="settings-switch-2">Web browser push notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-3" checked>
-										<label class="form-check-label" for="settings-switch-3">Mobile push notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-4">
-										<label class="form-check-label" for="settings-switch-4">Lorem ipsum notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-5">
-										<label class="form-check-label" for="settings-switch-5">Lorem ipsum notifications</label>
-									</div>
-									<div class="mt-3">
-									    <button type="submit" class="btn app-btn-primary" >Save Changes</button>
-									</div>
-							    </form>
-						    </div><!--//app-card-body-->						    
-						</div><!--//app-card-->
-	                </div>
-                </div><!--//row-->
-			    <hr class="my-4">
 		    </div><!--//container-fluid-->
 </div>
 

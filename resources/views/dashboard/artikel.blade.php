@@ -63,12 +63,12 @@
                                                 <span class="text-muted">Tidak ada gambar</span>
                                             @endif
                                         </td>
-                                        <td>{{ Str::limit($item->content, 20) }}</td>
+                                        <td>{{ Str::limit(strip_tags($item->content), 20) }}</td>
                                         <td>{{ $item->penerbit }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</td>
                                         <td>
                                             {{-- Tombol Lihat (nanti disambung ke detail) --}}
-                                            <a href="#" class="btn btn-sm btn-info">Lihat</a>
+                                            <a href="{{ route('form_artikel.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
 
                                             {{-- Tampilkan tombol Terima hanya jika accept masih kosong --}}
                                             @if (empty($item->accept))

@@ -1,225 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-    <title>Portal APRI</title>
-    
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
-    <!-- FontAwesome JS-->
-	<script defer src="{{ asset('dashboard-assets/assets/plugins/fontawesome/js/all.min.js') }}"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pendaftaran Anggota</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-	<!-- App CSS -->  
-	<link id="theme-style" rel="stylesheet" href="{{ asset('dashboard-assets/assets/css/portal.css') }}">
-  <!-- Tambahkan di <head> -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
 
-</head> 
+<div class="container py-5">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h5 class="mb-0">FORMULIR PENDAFTARAN ANGGOTA</h5>
+      <small>Asosiasi Pemancingan Indonesia - DPK Kota Bontang</small>
+    </div>
+    <div class="card-body">
 
-<div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">			    
-			    <h1 class="app-page-title">Daftar Keanggotaan</h1>
-			    <hr class="mb-4">
-                <div class="row g-4 settings-section">
-	                <div class="col-12 col-md-4">
-		                <h3 class="section-title">General</h3>
-		                <div class="section-intro">Settings section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="help.html">Learn more</a></div>
-	                </div>
-	              <div class="col-12 col-md-8">
-		          <div class="app-card app-card-settings shadow-sm p-4">
-	
-						    <div class="app-card-body">
-                    <form class="settings-form" action="{{ route('daftar-anggota.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
-                        </div>
+      <form class="settings-form" action="{{ route('daftar-anggota.store') }}" method="POST">
+        @csrf
 
-                        <div class="mb-3">
-                            <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
-                        </div>
+        <!-- Data Diri -->
+        <h6 class="fw-bold mb-3">Data Diri</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nama Lengkap</label>
+            <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Tempat Lahir</label>
+            <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir">
+          </div>
 
-                        <div class="mb-3">
-                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Tanggal Lahir</label>
+            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+          </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label><br>
-                            <select class="form-select" name="gender">
-                                <option value="">-- Pilih --</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Jenis Kelamin</label>
+            <select class="form-select" name="gender" id="gender">
+              <option value="">-- Pilih --</option>
+              <option value="L">Laki-laki</option>
+              <option value="P">Perempuan</option>
+            </select>
+          </div>
 
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat">
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Alamat</label>
+            <textarea class="form-control" name="alamat" id="alamat" rows="1"></textarea>
+          </div>
 
-                        <div class="mb-3">
-                          <label for="provinsi" class="form-label">Provinsi</label>
-                          <select class="form-select select2" id="provinsi" name="provinsi">
-                              <option value="">-- Pilih Provinsi --</option>
-                              @foreach($regions as $r)
-                                  <option value="{{ $r['provinsi'] }}">{{ $r['provinsi'] }}</option>
-                              @endforeach
-                          </select>
-                      </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="provinsi" class="form-label">Provinsi</label>
+                        <select class="form-select select2" id="provinsi" name="provinsi">
+                            <option value="">-- Pilih Provinsi --</option>
+                            @foreach($regions as $r)
+                                <option value="{{ $r['provinsi'] }}">{{ $r['provinsi'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                      <div class="mb-3">
+                <div class="col-md-6">
+            <label class="form-label">Kode Kabupaten</label>
+            <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten">
+          </div>
+
+                      <div class="col-md-6 mb-3">
                           <label for="kota" class="form-label">Kota/Kabupaten</label>
                           <select class="form-select select2" id="kota" name="kota_kabupaten">
                               <option value="">-- Pilih Kota/Kabupaten --</option>
                           </select>
                       </div>
 
-                        <div class="mb-3">
-                            <label for="kode_kabupaten" class="form-label">Kode Kabupaten</label>
-                            <input type="text" class="form-control" id="kode_kabupaten" name="kode_kabupaten">
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Pekerjaan</label>
+            <input type="text" class="form-control" name="pekerjaan" id="pekerjaan">
+          </div>
 
-                        <div class="mb-3">
-                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Nomor HP</label>
+            <input type="text" class="form-control" name="no_hp" id="no_hp">
+          </div>
 
-                        <div class="mb-3">
-                            <label for="no_hp" class="form-label">No HP</label>
-                            <input type="text" class="form-control" id="no_hp" name="no_hp">
-                        </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
+          </div>
+        </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
-                        </div>
+        <hr>
 
-                        <div class="mb-3">
-                            <label class="form-label">Tipe Pendaftaran</label>
-                            <select class="form-select" name="tipe_pendaftaran" id="tipe_pendaftaran">
-                                <option value="individu">Individu</option>
-                                <option value="komunitas">Komunitas</option>
-                            </select>
-                        </div>
+        <!-- Daftar Atas Nama -->
+        <h6 class="fw-bold mb-3">Daftar Atas Nama</h6>
+        <div class="row g-3">
+        <div class="col-md-6">
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipe_pendaftaran" id="individu" value="individu" checked>
+            <label class="form-check-label" for="individu">Individu</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipe_pendaftaran" id="komunitas" value="komunitas">
+            <label class="form-check-label" for="komunitas">Komunitas</label>
+            </div>
+        </div>
 
-                        <div class="mb-3" id="form_nama_komunitas" style="display: none;">
-                            <label for="nama_komunitas" class="form-label">Nama Komunitas</label>
-                            <input type="text" class="form-control" id="nama_komunitas" name="nama_komunitas">
-                        </div>
+        <div class="col-md-6" id="form_nama_komunitas">
+            <label class="form-label">Nama Komunitas</label>
+            <input type="text" class="form-control" name="nama_komunitas" id="nama_komunitas">
+        </div>
+        </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Jenis Pemancingan yang Diminati</label><br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="laut" id="laut">
-                                <label class="form-check-label" for="laut">Laut</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="sungai" id="sungai">
-                                <label class="form-check-label" for="sungai">Sungai</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="kolam" id="kolam">
-                                <label class="form-check-label" for="kolam">Kolam</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="muara" id="muara">
-                                <label class="form-check-label" for="muara">Muara</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="danau" id="danau">
-                                <label class="form-check-label" for="danau">Danau</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" value="lainnya" id="lainnya">
-                                <label class="form-check-label" for="lainnya">Lainnya</label>
-                            </div>
-                        </div>
+        <hr>
 
-                        <div class="mb-3 form-check">
-                            <label class="form-check-label">Saya menyetujui syarat & ketentuan</label>
-                        </div>
+        <!-- Jenis Pemancingan -->
+        <h6 class="fw-bold mb-3">Jenis Pemancingan yang Diminati</h6>
+        <div class="row">
+          <div class="col-md-12">
+            @php
+              $jenis = ['laut' => 'Laut', 'sungai' => 'Sungai', 'kolam' => 'Kolam/Galatama', 'muara' => 'Muara', 'danau' => 'Danau/Waduk', 'lainnya' => 'Lainnya'];
+            @endphp
+            @foreach($jenis as $key => $label)
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="jenis_pemancingan[]" id="{{ $key }}" value="{{ $key }}">
+                <label class="form-check-label" for="{{ $key }}">{{ $label }}</label>
+              </div>
+            @endforeach
+          </div>
+        </div>
 
-                        <button type="submit" class="btn app-btn-primary">Simpan</button>
-                    </form>
-                </div>
-						    				    
-						</div><!--//app-card-->
-	                </div>
-                </div><!--//row-->
-                <hr class="my-4">
-                <div class="row g-4 settings-section">
-	                <div class="col-12 col-md-4">
-		                <h3 class="section-title">Notifications</h3>
-		                <div class="section-intro">Settings section intro goes here. Duis velit massa, faucibus non hendrerit eget.</div>
-	                </div>
-	                <div class="col-12 col-md-8">
-		                <div class="app-card app-card-settings shadow-sm p-4">						    
-						    <div class="app-card-body">
-							    <form class="settings-form">
-								    <div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-1" checked>
-										<label class="form-check-label" for="settings-switch-1">Project notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-2">
-										<label class="form-check-label" for="settings-switch-2">Web browser push notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-3" checked>
-										<label class="form-check-label" for="settings-switch-3">Mobile push notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-4">
-										<label class="form-check-label" for="settings-switch-4">Lorem ipsum notifications</label>
-									</div>
-									<div class="form-check form-switch mb-3">
-										<input class="form-check-input" type="checkbox" id="settings-switch-5">
-										<label class="form-check-label" for="settings-switch-5">Lorem ipsum notifications</label>
-									</div>
-									<div class="mt-3">
-									    <button type="submit" class="btn app-btn-primary" >Save Changes</button>
-									</div>
-							    </form>
-						    </div><!--//app-card-body-->						    
-						</div><!--//app-card-->
-	                </div>
-                </div><!--//row-->
-			    <hr class="my-4">
-		    </div><!--//container-fluid-->
+        <hr>
+
+        <!-- Tanda Tangan -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Tanda Tangan</label>
+          <div>
+            <canvas id="signature" width="600" height="200"
+              style="border:2px solid #bbb; border-radius:8px; background:#fff;">
+            </canvas>
+          </div>
+          <div class="mt-2">
+            <button type="button" class="btn btn-sm btn-danger" id="clear">Clear</button>
+          </div>
+          <!-- hidden input untuk kirim base64 ke server -->
+          <input type="hidden" name="signature" id="ttd">
+        </div>
+
+        <hr>
+
+        <!-- Komitmen -->
+        <h6 class="fw-bold mb-3">Komitmen Pernyataan</h6>
+        <ul>
+          <li>Mematuhi semua aturan dan tata tertib yang ditetapkan oleh asosiasi</li>
+          <li>Berpartisipasi aktif dalam kegiatan, program kerja, dan pengembangan asosiasi</li>
+          <li>Menjaga nama baik asosiasi dan ikut menciptakan suasana yang solid</li>
+          <li>Bersedia memberikan kontribusi baik berupa waktu, tenaga, ide, maupun dukungan</li>
+        </ul>
+
+        <div class="mt-4 text-end">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
 </div>
+
 @include('sweetalert::alert')
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const tipeSelect = document.getElementById("tipe_pendaftaran");
-        const formKomunitas = document.getElementById("form_nama_komunitas");
-
-        function toggleKomunitas() {
-            if (tipeSelect.value === "komunitas") {
-                formKomunitas.style.display = "block";
-            } else {
-                formKomunitas.style.display = "none";
-                document.getElementById("nama_komunitas").value = ""; // reset nilai
-            }
-        }
-
-        // jalan saat load pertama kali
-        toggleKomunitas();
-
-        // jalan saat select berubah
-        tipeSelect.addEventListener("change", toggleKomunitas);
-    });
-</script>
 
 <!-- Tambahkan sebelum </body> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -236,7 +186,45 @@
 	<!-- Page Specific JS -->
 	<script src="{{ asset('dashboard-assets/assets/js/app.js') }}"></script> 
 
-  <script>
+<script>
+    const canvas = document.getElementById('signature');
+    const signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgb(255,255,255)' // supaya transparan tidak hitam
+    });
+
+    document.getElementById('clear').addEventListener('click', function () {
+        signaturePad.clear();
+    });
+
+    // sebelum submit form, simpan tanda tangan ke hidden input
+    document.querySelector("form").addEventListener("submit", function (e) {
+        if (!signaturePad.isEmpty()) {
+            document.getElementById('ttd').value = signaturePad.toDataURL("image/png");
+        }
+    });
+</script>
+
+<script>
+$(document).ready(function () {
+    function toggleNamaKomunitas() {
+        let tipe = $('input[name="tipe_pendaftaran"]:checked').val();
+        if (tipe === "individu") {
+            $("#form_nama_komunitas").hide();   // sembunyikan
+            $("#nama_komunitas").val("");      // kosongkan biar ga ke-submit
+        } else {
+            $("#form_nama_komunitas").show();  // tampilkan
+        }
+    }
+
+    // jalankan pertama kali
+    toggleNamaKomunitas();
+
+    // jalankan setiap kali ganti radio
+    $('input[name="tipe_pendaftaran"]').on("change", toggleNamaKomunitas);
+});
+</script>
+
+<script>
       $(document).ready(function() {
           $('#provinsi').select2({
               placeholder: "-- Pilih Provinsi --",
@@ -269,6 +257,8 @@
               kotaSelect.val(null).trigger('change');
           });
       });
-  </script>
+</script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
