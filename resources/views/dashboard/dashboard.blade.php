@@ -113,23 +113,14 @@
                 }]
             },
             options: {
-                indexAxis: 'y',
                 scales: {
-                    x: {
-                        beginAtZero: true,
+                    yAxes: [{
                         ticks: {
-                            precision: 0,
-                            callback: function (value) {
-                                console.log(value);
-
-                                return Number.isInteger(value) ? value : null;
-                            }
+                            beginAtZero: true,
+                            userCallback: (label, index, labels) => Math.floor(label) === label ? label : undefined,
                         }
-                    },
-                    y: {
-                        beginAtZero: true,
-                    }
-                }
+                    }],
+                },
             }
         });
     });

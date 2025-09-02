@@ -22,11 +22,12 @@ class DashboardController extends Controller
 
         $domisili = data_anggota::select('kota_kabupaten', DB::raw('COUNT(*) as total'))
             ->groupBy('kota_kabupaten')
+            ->whereNotNull('accept')
             ->orderByDesc('total') // urut dari yang paling banyak
             ->get();
 
-        $labels = $domisili->pluck('kota_kabupaten');
-        $counts = $domisili->pluck('total');
+        $labels = $domisili->take(7)->pluck('kota_kabupaten');
+        $counts = $domisili->take(7)->pluck('total');
 
         return view('dashboard.dashboard', compact('accept', 'pending', 'persenPending', 'persenAktif', 'artikelTampil', 'artikelArsip', 'domisili', 'labels', 'counts'));
     }

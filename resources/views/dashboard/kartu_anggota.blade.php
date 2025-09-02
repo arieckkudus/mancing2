@@ -107,14 +107,9 @@
             vertical-align: middle;
         }
 
-        .barcode {
-            margin-top: 18px;
-            height: 64px;
-            background: #fff;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            text-align: center;
-            line-height: 64px;
+        .barcode img {
+            max-width: 200px;
+            height: auto;
         }
 
         .fields {
@@ -174,8 +169,8 @@
             <header class="card__head">
                 <table>
                     <tr>
-                        <td class="logo">
-                            <img src="{{ public_path('Arsha/assets/img/logo.png') }}" alt="logo">
+                        <td class="logo" style="background: transparent;">
+                            <img src="{{ asset('Arsha/assets/img/logo.png') }}" alt="logo">
                         </td>
                         <td class="brand">
                             <h1>DPK APRI KOTA BONTANG</h1>
@@ -190,15 +185,14 @@
                     <div class="photo">
                         <svg viewBox="0 0 24 24">
                             <path
-                                d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z" />
+                                d="M12 12a5 5 0 1 0-5-5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z" />
                         </svg>
                     </div>
-                    <div class="barcode">
-                        <!-- Barcode placeholder -->
-                        <svg viewBox="0 0 400 64" preserveAspectRatio="none">
-                            <rect width="400" height="64" fill="#fff" />
-                        </svg>
+                    <div class="barcode" style="text-align: right;">
+                        <img src="{{ asset('storage/' . $anggota->signature) }}" alt="signature"
+                            style="width: 170px; height: auto; background: transparent;">
                     </div>
+
                 </div>
 
                 <div class="fields">
@@ -211,7 +205,9 @@
                         <tr>
                             <td class="label">TTL</td>
                             <td class="colon">:</td>
-                            <td class="value">{{ $anggota->tempat_lahir . ', ' . $anggota->tanggal_lahir }}</td>
+                            <td class="value">
+                                {{ $anggota->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota->tanggal_lahir)->translatedFormat('d F Y') }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Jenis Kelamin</td>
@@ -229,7 +225,9 @@
                         <tr>
                             <td class="label">Alamat</td>
                             <td class="colon">:</td>
-                            <td class="value">{{ $anggota->alamat . ', ' . $anggota->kota_kabupaten . ', ' . $anggota->provinsi }}</td>
+                            <td class="value">
+                                {{ $anggota->alamat . ', ' . $anggota->kota_kabupaten . ', ' . $anggota->provinsi }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Pekerjaan</td>

@@ -134,15 +134,10 @@ class AnggotaController extends Controller
     {
         try {
             $anggota = data_anggota::findOrFail($id);
-            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('dashboard.kartu_anggota_pdf', compact('anggota'))->setPaper('a4', 'landscape');
-            return response()->streamDownload(function () use ($pdf) {
-                echo $pdf->output();
-            }, 'kartu_anggota.pdf', [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="kartu_anggota.pdf"',
-            ]);
+            return view('dashboard.kartu_anggota', compact('anggota'));
         } catch (\Throwable $th) {
             abort(404);
         }
     }
+
 }
