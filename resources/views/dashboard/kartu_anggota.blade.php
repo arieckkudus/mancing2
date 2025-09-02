@@ -165,7 +165,7 @@
 
 <body>
     <main class="wrap">
-        <section class="card">
+        <section class="card" style="width: 600px;">
             <header class="card__head">
                 <table>
                     <tr>
@@ -181,20 +181,6 @@
             </header>
 
             <div class="card__body">
-                <div class="left">
-                    <div class="photo">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 12a5 5 0 1 0-5-5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z" />
-                        </svg>
-                    </div>
-                    <div class="barcode" style="text-align: right;">
-                        <img src="{{ asset('storage/' . $anggota->signature) }}" alt="signature"
-                            style="width: 170px; height: auto; background: transparent;">
-                    </div>
-
-                </div>
-
                 <div class="fields">
                     <table>
                         <tr>
@@ -238,6 +224,19 @@
                             <td class="label">Komunitas</td>
                             <td class="colon">:</td>
                             <td class="value">{{ $anggota->nama_komunitas ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right;">tandatangan</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right;">
+                                <img src="{{ asset('storage/' . $anggota->signature) }}" alt="signature"
+                                    style="width: 170px; height: auto; background: transparent;">
+                            </td>
                         </tr>
                     </table>
                 </div>

@@ -175,21 +175,21 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<!-- Javascript -->          
+<!-- Javascript -->
 	<script src="{{ asset('dashboard-assets/assets/plugins/popper.min.js') }}"></script>
-	<script src="{{ asset('dashboard-assets/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>  
+	<script src="{{ asset('dashboard-assets/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 	<!-- Charts JS -->
-	<script src="{{ asset('dashboard-assets/assets/plugins/chart.js/chart.min.js') }}"></script> 
-	<script src="{{ asset('dashboard-assets/assets/js/index-charts.js') }}"></script> 
+	<script src="{{ asset('dashboard-assets/assets/plugins/chart.js/chart.min.js') }}"></script>
+	<script src="{{ asset('dashboard-assets/assets/js/index-charts.js') }}"></script>
 
 	<!-- Page Specific JS -->
-	<script src="{{ asset('dashboard-assets/assets/js/app.js') }}"></script> 
+	<script src="{{ asset('dashboard-assets/assets/js/app.js') }}"></script>
 
 <script>
     const canvas = document.getElementById('signature');
     const signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgb(255,255,255)' // supaya transparan tidak hitam
+        backgroundColor: 'transparent', // supaya transparan tidak hitam
     });
 
     document.getElementById('clear').addEventListener('click', function () {
