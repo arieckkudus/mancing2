@@ -187,6 +187,11 @@
                             <td class="label">Kode Anggota</td>
                             <td class="colon">:</td>
                             <td class="value">{{ $anggota->kode }}</td>
+                            <td rowspan="2">
+                                <div style="width: 100%; display: flex; justify-content: end;">
+                                    <img style="height: 60px;" src="{{ $qr }}" alt="qr">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Nama</td>
@@ -196,9 +201,11 @@
                         <tr>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td style="text-align: right;">tandatangan</td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td style="text-align: right;">
