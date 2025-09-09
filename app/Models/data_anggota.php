@@ -9,13 +9,15 @@ class data_anggota extends Model
     protected $table = 'data_anggota';
 
     protected $fillable = [
+        'kode',
         'nama_lengkap',
+        'foto',
         'tempat_lahir',
         'tanggal_lahir',
         'gender',
         'alamat',
         'kota_kabupaten',
-        'kode_kabupaten',
+        'status',
         'provinsi',
         'pekerjaan',
         'no_hp',

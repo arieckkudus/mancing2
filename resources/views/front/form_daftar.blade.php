@@ -15,14 +15,13 @@
   <div class="card shadow">
     <div class="card-header text-center">
       <h5 class="mb-0">FORMULIR PENDAFTARAN ANGGOTA</h5>
-      <small>Asosiasi Pemancingan Indonesia - DPK Kota Bontang</small>
+      <small>Asosiasi Pemancingan Indonesia - DPP Kalimantan Timur</small>
     </div>
     <div class="card-body">
 
-      <form class="settings-form" action="{{ route('daftar-anggota.store') }}" method="POST">
+      <form class="settings-form" action="{{ route('daftar-anggota.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <!-- Data Diri -->
         <h6 class="fw-bold mb-3">Data Diri</h6>
         <div class="row g-3">
           <div class="col-md-6">
@@ -53,27 +52,38 @@
             <textarea class="form-control" name="alamat" id="alamat" rows="1"></textarea>
           </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="provinsi" class="form-label">Provinsi</label>
-                        <select class="form-select select2" id="provinsi" name="provinsi">
-                            <option value="">-- Pilih Provinsi --</option>
-                            @foreach($regions as $r)
-                                <option value="{{ $r['provinsi'] }}">{{ $r['provinsi'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                <div class="col-md-6">
-            <label class="form-label">Kode Kabupaten</label>
-            <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten">
+          <div class="col-md-6 mb-3">
+              <label for="provinsi" class="form-label">Provinsi</label>
+              <select class="form-select select2" id="provinsi" name="provinsi">
+                  <option value="">-- Pilih Provinsi --</option>
+                  @foreach($regions as $r)
+                      <option value="{{ $r['provinsi']['kode'] }}">
+                          {{ $r['provinsi']['nama'] }}
+                      </option>
+                  @endforeach
+              </select>
           </div>
 
-                      <div class="col-md-6 mb-3">
-                          <label for="kota" class="form-label">Kota/Kabupaten</label>
-                          <select class="form-select select2" id="kota" name="kota_kabupaten">
-                              <option value="">-- Pilih Kota/Kabupaten --</option>
-                          </select>
-                      </div>
+          <div class="col-md-6 mb-3" id="kota-container">
+              <label for="kota" class="form-label">Kota/Kabupaten</label>
+              <select class="form-select select2" id="kota" name="kota_kabupaten">
+                  <option value="">-- Pilih Kota/Kabupaten --</option>
+              </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+              <label for="status" class="form-label">Status Keanggotaan</label>
+              <select class="form-control" name="status" id="status">
+                  <option value="">-- Pilih --</option>
+                  <option value="anggota">Anggota</option>
+                  <option value="pengurus">Pengurus</option>
+              </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+              <label for="foto" class="form-label">Upload Foto</label>
+              <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+          </div>
 
           <div class="col-md-6">
             <label class="form-label">Pekerjaan</label>
@@ -93,7 +103,6 @@
 
         <hr>
 
-        <!-- Daftar Atas Nama -->
         <h6 class="fw-bold mb-3">Daftar Atas Nama</h6>
         <div class="row g-3">
         <div class="col-md-6">
@@ -115,7 +124,6 @@
 
         <hr>
 
-        <!-- Jenis Pemancingan -->
         <h6 class="fw-bold mb-3">Jenis Pemancingan yang Diminati</h6>
         <div class="row">
           <div class="col-md-12">
@@ -225,38 +233,46 @@ $(document).ready(function () {
 </script>
 
 <script>
-      $(document).ready(function() {
-          $('#provinsi').select2({
-              placeholder: "-- Pilih Provinsi --",
-              allowClear: true
-          });
-          $('#kota').select2({
-              placeholder: "-- Pilih Kota/Kabupaten --",
-              allowClear: true
-          });
+$(document).ready(function() {
+    $('#provinsi').select2({
+        placeholder: "-- Pilih Provinsi --",
+        allowClear: true
+    });
+    $('#kota').select2({
+        placeholder: "-- Pilih Kota/Kabupaten --",
+        allowClear: true
+    });
 
-          const dataRegion = @json($regions);
+    const dataRegion = @json($regions);
 
-          $('#provinsi').on('change', function() {
-              let selectedProv = $(this).val();
-              let kotaSelect = $('#kota');
+    $('#provinsi').on('change', function() {
+        let selectedProvKode = $(this).val(); // kode provinsi
+        let kotaSelect = $('#kota');
 
-              // kosongkan opsi kota
-              kotaSelect.empty().append('<option value="">-- Pilih Kota/Kabupaten --</option>');
+        // kosongkan opsi kota
+        kotaSelect.empty().append('<option value="">-- Pilih Kota/Kabupaten --</option>');
 
-              // cari provinsi di JSON
-              let provData = dataRegion.find(r => r.provinsi === selectedProv);
+        // cari provinsi berdasarkan kode
+        let provData = dataRegion.find(r => r.provinsi.kode === selectedProvKode);
 
-              if (provData) {
-                  provData.kota.forEach(k => {
-                      kotaSelect.append(new Option(k, k));
-                  });
-              }
+        if (provData) {
+            provData.kota.forEach(k => {
+                kotaSelect.append(new Option(k.nama, k.kode));
+            });
+        }
 
-              // refresh select2 (harus trigger 'change' setelah append)
-              kotaSelect.val(null).trigger('change');
-          });
-      });
+        kotaSelect.val(null).trigger('change');
+    });
+
+    // Hide kota kalau status = pengurus
+    $('#status').on('change', function() {
+        if ($(this).val() === 'pengurus') {
+            $('#kota-container').hide();
+        } else {
+            $('#kota-container').show();
+        }
+    }).trigger('change');
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

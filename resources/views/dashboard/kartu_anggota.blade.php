@@ -184,46 +184,14 @@
                 <div class="fields">
                     <table>
                         <tr>
+                            <td class="label">Kode Anggota</td>
+                            <td class="colon">:</td>
+                            <td class="value">{{ $anggota->kode }}</td>
+                        </tr>
+                        <tr>
                             <td class="label">Nama</td>
                             <td class="colon">:</td>
                             <td class="value">{{ $anggota->nama_lengkap }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">TTL</td>
-                            <td class="colon">:</td>
-                            <td class="value">
-                                {{ $anggota->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota->tanggal_lahir)->translatedFormat('d F Y') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label">Jenis Kelamin</td>
-                            <td class="colon">:</td>
-                            <td class="value">
-                                @if ($anggota->gender == 'L')
-                                    Laki-Laki
-                                @elseif ($anggota->gender == 'P')
-                                    Perempuan
-                                @else
-                                    -
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label">Alamat</td>
-                            <td class="colon">:</td>
-                            <td class="value">
-                                {{ $anggota->alamat . ', ' . $anggota->kota_kabupaten . ', ' . $anggota->provinsi }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label">Pekerjaan</td>
-                            <td class="colon">:</td>
-                            <td class="value">{{ $anggota->pekerjaan }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Komunitas</td>
-                            <td class="colon">:</td>
-                            <td class="value">{{ $anggota->nama_komunitas ?? '-' }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -241,10 +209,6 @@
                     </table>
                 </div>
             </div>
-
-            <footer class="card__foot">
-                Kode: PX-0001
-            </footer>
         </section>
     </main>
 </body>

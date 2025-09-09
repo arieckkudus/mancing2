@@ -1,0 +1,17 @@
+yang harus diganti
+
+kode provinsi+kode kabupaten
+DPP64.01
+
+DPK64.01.20
+
+Anggota = >50
+Pengurus = <49
+tambah
+upload foto
+
+form daftar anggota ganti jadi Asosiasi Pemancingan Indonesia Provinsi 
+
+untuk kartu isinya hanya
+nama,no anggota dan barcode
+isi barcode

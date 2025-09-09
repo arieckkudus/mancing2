@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('data_anggota', function (Blueprint $table) {
             $table->id();
+            $table->string('kode');
             $table->string('nama_lengkap');
+            $table->string('foto');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('gender', ['L', 'P']);
             $table->text('alamat');
             $table->string('kota_kabupaten');
-            $table->string('kode_kabupaten');
+            $table->string('status');
             $table->string('provinsi');
             $table->string('pekerjaan');
             $table->string('no_hp', 20)->unique();
