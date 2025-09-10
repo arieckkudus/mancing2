@@ -7,6 +7,11 @@ use App\Models\data_anggota;
 use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
 
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\ErrorCorrectionLevel;
 
 class AnggotaController extends Controller
 {
@@ -159,8 +164,24 @@ class AnggotaController extends Controller
     {
         try {
             $anggota = data_anggota::findOrFail($id);
-            return view('dashboard.kartu_anggota', compact('anggota'));
+
+            $qrCode = new QrCode(
+                data: $anggota->kode,
+                encoding: new Encoding('UTF-8'),
+                errorCorrectionLevel: ErrorCorrectionLevel::Low,
+                size: 300,
+                margin: 10,
+                roundBlockSizeMode: RoundBlockSizeMode::Margin
+            );
+
+            $writer = new PngWriter();
+            $result = $writer->write($qrCode);
+
+            $qr = 'data:image/png;base64,' . base64_encode($result->getString());
+
+            return view('dashboard.kartu_anggota', compact('anggota', 'qr'));
         } catch (\Throwable $th) {
+            dd($th);
             abort(404);
         }
     }
