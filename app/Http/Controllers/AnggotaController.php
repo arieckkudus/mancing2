@@ -77,7 +77,6 @@ class AnggotaController extends Controller
                 $kode = "DPK-" . $provinsiKode . "." . $kotaKode . "." . str_pad($lastNumber, 2, "0", STR_PAD_LEFT);
             }
 
-            // --- simpan ke database ---
             data_anggota::create([
                 'kode' => $kode,
                 'nama_lengkap' => $validated['nama_lengkap'],
