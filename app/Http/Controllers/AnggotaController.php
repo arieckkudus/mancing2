@@ -12,6 +12,7 @@ use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Builder\Builder;
 
 class AnggotaController extends Controller
 {
@@ -65,9 +66,22 @@ class AnggotaController extends Controller
                 $fotoPath = $request->file('foto')->store('foto_anggota', 'public');
             }
 
-            // --- generate kode otomatis ---
-            $provinsiKode = $request->provinsi; // kode provinsi
-            $kotaKode = $request->kota_kabupaten; // kode kota/kabupaten (kalau anggota)
+            // ambil json
+            $regions = json_decode(file_get_contents(public_path('json/region.json')), true);
+
+            $provinsiKode = $request->provinsi;
+            $kotaKode     = $request->kota_kabupaten;
+
+            // cari nama provinsi berdasarkan kode
+            $provData = collect($regions)->firstWhere('provinsi.kode', $provinsiKode);
+            $provinsiNama = $provData ? $provData['provinsi']['nama'] : null;
+
+            // cari nama kota (kalau status anggota)
+            $kotaNama = null;
+            if ($kotaKode && $provData) {
+                $kota = collect($provData['kota'])->firstWhere('kode', $kotaKode);
+                $kotaNama = $kota ? $kota['nama'] : null;
+            }
 
             if ($validated['status'] === 'pengurus') {
                 // hitung jumlah pengurus yang sudah ada
@@ -89,8 +103,8 @@ class AnggotaController extends Controller
                 'tanggal_lahir' => $validated['tanggal_lahir'] ?? null,
                 'gender' => $validated['gender'] ?? null,
                 'alamat' => $validated['alamat'] ?? null,
-                'kota_kabupaten' => $validated['kota_kabupaten'] ?? null,
-                'provinsi' => $validated['provinsi'] ?? null,
+                'provinsi' => $provinsiNama, // simpan nama
+                'kota_kabupaten' => $kotaNama, // simpan nama
                 'status' => $validated['status'],
                 'pekerjaan' => $validated['pekerjaan'] ?? null,
                 'no_hp' => $validated['no_hp'] ?? null,
@@ -105,7 +119,7 @@ class AnggotaController extends Controller
                 'foto' => $fotoPath,
             ]);
 
-            Alert::success('Pendaftaran berhasil! Silakan menunggu admin untuk melakukan verifikasi.', "Kode Anda: $kode");
+            Alert::success('Pendaftaran berhasil! Silakan menunggu admin untuk melakukan verifikasi.');
             return redirect()->route('landing_page');
 
         } catch (ValidationException $e) {
