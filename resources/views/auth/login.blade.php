@@ -12,60 +12,45 @@
 </head>
 
 <body>
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="text-center my-5">
-                        <img src="{{ asset('upscalemedia-transformed copy.png') }}" alt="logo" width="100">
-                    </div>
-                    <div class="card shadow-lg">
-                        <div class="card-body p-5">
-                            <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate
-                                autocomplete="off">
-                                @csrf
-                                <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                    <input id="email" type="email" class="form-control" name="email"
-                                        value="{{ old('email') }}" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Email is invalid
-                                    </div>
-                                </div>
+    <div style="display: flex; flex-direction: row;">
+        <div style="min-height: 100vh; flex: 2; overflow: hidden;">
+            <img src="https://images.pexels.com/photos/3602778/pexels-photo-3602778.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                alt="bg" style="object-fit: fit-content; min-width: 100%; min-height: 100%; opacity: 0.4;">
+        </div>
+        <div
+            style="min-height: 100vh; flex: 1; padding-inline: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="w-100" style="margin-bottom: 80px;">
+                <span style="font-size: 36px; font-weight: bold;">Mancing</span>
+            </div>
+            <form method="POST" action="{{ route('login') }}" class="needs-validation w-100 d-flex" novalidate
+                autocomplete="off" style="flex-direction: column;">
+                @csrf
+                <span style="margin-bottom: 10px;">Lorem ipsum dolor sit.</span>
 
-                                <div class="mb-3">
-                                    <div class="mb-2 w-100">
-                                        <label class="text-muted" for="password">Password</label>
-                                    </div>
-                                    <input id="password" type="password" class="form-control" name="password" required>
-                                    <div class="invalid-feedback">
-                                        Password is required
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                                        <label for="remember" class="form-check-label">Remember Me</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary ms-auto">Login</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Don't have an account? <a href="register.html" class="text-dark">Create One</a>
-                            </div>
-                        </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2 text-muted" for="email">E-Mail Address</label>
+                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required
+                        autofocus>
+                    <div class="invalid-feedback">
+                        Email is invalid
                     </div>
                 </div>
-            </div>
+
+                <div class="form-group mb-2">
+                    <div class="mb-2 w-100">
+                        <label class="text-muted" for="password">Password</label>
+                    </div>
+                    <input id="password" type="password" class="form-control" name="password" required>
+                    <div class="invalid-feedback">
+                        Password is required
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
         </div>
-    </section>
-
+    </div>
     <script src="{{ asset('js/login.js') }}"></script>
-
 </body>
 
 </html>
