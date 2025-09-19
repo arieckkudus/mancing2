@@ -15,32 +15,35 @@
 
 @section('content')
     <div class="app-content pt-3 p-md-3 p-lg-4">
-        <div class="container-xl">
+        <div class="container-fluid px-0">
             <h1 class="app-page-title">Table Anggota</h1>
 
             <div class="card shadow-sm mt-4">
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between mb-3 flex-wrap">
-                    {{-- Form Pencarian --}}
-                    <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2" style="max-width: 300px;">
-                        <input type="text" name="search" class="form-control me-2" placeholder="Cari anggota..."
-                            value="{{ request('search') }}">
-                        <button type="submit" class="btn btn-primary btn-sm">Cari</button>
-                    </form>
+                        {{-- Form Pencarian --}}
+                        <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2"
+                            style="max-width: 300px;">
+                            <input type="text" name="search" class="form-control me-2" placeholder="Cari anggota..."
+                                value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+                        </form>
 
-                    {{-- Dropdown Filter --}}
-                    <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2">
-                        {{-- kalau ada search, ikutkan biar ga hilang --}}
-                        <input type="hidden" name="search" value="{{ request('search') }}">
+                        {{-- Dropdown Filter --}}
+                        <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2">
+                            {{-- kalau ada search, ikutkan biar ga hilang --}}
+                            <input type="hidden" name="search" value="{{ request('search') }}">
 
-                        <select name="accept_filter" class="form-select me-2" onchange="this.form.submit()">
-                            <option value="">-- Semua Data --</option>
-                            <option value="filled" {{ request('accept_filter') == 'filled' ? 'selected' : '' }}>Anggota Diterima</option>
-                            <option value="null" {{ request('accept_filter') == 'null' ? 'selected' : '' }}>Menunggu keanggotaan</option>
-                        </select>
-                    </form>
-                </div>
+                            <select name="accept_filter" class="form-select me-2" onchange="this.form.submit()">
+                                <option value="">-- Semua Data --</option>
+                                <option value="filled" {{ request('accept_filter') == 'filled' ? 'selected' : '' }}>Anggota
+                                    Diterima</option>
+                                <option value="null" {{ request('accept_filter') == 'null' ? 'selected' : '' }}>Menunggu
+                                    keanggotaan</option>
+                            </select>
+                        </form>
+                    </div>
 
 
                     <div class="table-responsive">
@@ -74,25 +77,28 @@
                                         <td>{{ $item->no_hp }}</td>
                                         <td class="text-capitalize">{{ $item->tipe_pendaftaran }}</td>
                                         <td class="text-center">
-                                            {{-- Tombol Lihat (nanti disambung ke detail) --}}
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                data-bs-target="#showDataModal" data-show-id="{{ $item->id }}">
-                                                Lihat
-                                            </button>
+                                            <div style="display: flex; align-items: center; column-gap: 0.5rem;">
+                                                {{-- Tombol Lihat (nanti disambung ke detail) --}}
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                    data-bs-target="#showDataModal" data-show-id="{{ $item->id }}">
+                                                    Lihat
+                                                </button>
 
-                                            {{-- Tampilkan tombol Terima hanya jika accept masih kosong --}}
-                                            @if (empty($item->accept))
-                                                <form action="{{ route('anggota.accept', $item->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-success"
-                                                        onclick="return confirm('Yakin ingin menerima anggota ini?')">
-                                                        Terima
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <a href="{{ route('kartu_anggota', $item->id) }}" class="btn btn-secondary">Kartu</a>
-                                            @endif
+                                                {{-- Tampilkan tombol Terima hanya jika accept masih kosong --}}
+                                                @if (empty($item->accept))
+                                                    <form action="{{ route('anggota.accept', $item->id) }}" method="POST"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-success"
+                                                            onclick="return confirm('Yakin ingin menerima anggota ini?')">
+                                                            Terima
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <a href="{{ route('kartu_anggota', $item->id) }}"
+                                                        class="btn btn-primary">Kartu</a>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

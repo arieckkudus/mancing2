@@ -11,16 +11,21 @@
         .stats-type {
             color: #000 !important;
         }
+
+        .app-card {
+            border-radius: 8px;
+        }
     </style>
     <div class="app-content pt-3 p-md-3 p-lg-4">
         <div class="container-fluid px-0">
-            <div class="row g-4 mb-4">
+            <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
                 <div class="col-6 col-lg-4">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Anggota Aktif</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $accept }}</div>
+                                {{ $accept }}
+                            </div>
                             <div class="stats-meta">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +44,8 @@
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Menunggu Keanggotaan</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $pending }}</div>
+                                {{ $pending }}
+                            </div>
                             <div class="stats-meta">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -58,26 +64,31 @@
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $artikelTampil }}</div>
+                                {{ $artikelTampil }}
+                            </div>
                             <div class="stats-meta">Tampil</div>
                         </div><!--//app-card-body-->
                         <a class="app-card-link-mask" href="#"></a>
                     </div>
                 </div><!--//col-->
             </div><!--//row-->
-            <div class="row g-4 mb-4">
-
+            <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
                 <div class="col-6 col-lg-4">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Artikel</h4>
                             <span style="font-size: 16px; color: #828282;">Judul</span>
                             <ul class="list-group" style="border-radius: 0px;">
-                                <li class="list-group-item px-0" style="border-left: none; border-right: none; padding-block: 12px;">An item</li>
-                                <li class="list-group-item px-0" style="border-left: none; border-right: none; padding-block: 12px;">A second item</li>
-                                <li class="list-group-item px-0" style="border-left: none; border-right: none; padding-block: 12px;">A third item</li>
-                                <li class="list-group-item px-0" style="border-left: none; border-right: none; padding-block: 12px;">A fourth item</li>
-                                <li class="list-group-item px-0" style="border-left: none; border-right: none; padding-block: 12px;">And a fifth one</li>
+                                <li class="list-group-item px-0"
+                                    style="border-left: none; border-right: none; padding-block: 12px;">An item</li>
+                                <li class="list-group-item px-0"
+                                    style="border-left: none; border-right: none; padding-block: 12px;">A second item</li>
+                                <li class="list-group-item px-0"
+                                    style="border-left: none; border-right: none; padding-block: 12px;">A third item</li>
+                                <li class="list-group-item px-0"
+                                    style="border-left: none; border-right: none; padding-block: 12px;">A fourth item</li>
+                                <li class="list-group-item px-0"
+                                    style="border-left: none; border-right: none; padding-block: 12px;">And a fifth one</li>
                             </ul>
                             {{-- <div class="stats-figure">{{ $artikelArsip }}</div>
                             <div class="stats-meta">Diarsipkan</div> --}}
@@ -121,27 +132,65 @@
 
         new Chart($('#canvas-barchart-domisili'), {
             type: 'bar',
+
             data: {
                 labels: @json($labels),
                 datasets: [{
                     label: 'Jumlah Anggota',
-                    data: @json($counts),
                     backgroundColor: gradient,
+                    borderColor: gradient,
                     borderWidth: 1,
+                    maxBarThickness: 32,
+
+                    data: @json($counts),
                 }]
             },
             options: {
+                responsive: true,
+                aspectRatio: 1.5,
                 legend: {
+                    position: 'bottom',
+                    align: 'end',
+                },
+                title: {
                     display: false,
+                    text: 'Chart.js Bar Chart Example',
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                    titleMarginBottom: 10,
+                    bodySpacing: 10,
+                    xPadding: 16,
+                    yPadding: 16,
+                    borderColor: window.chartColors.border,
+                    borderWidth: 1,
+                    backgroundColor: '#fff',
+                    bodyFontColor: window.chartColors.text,
+                    titleFontColor: window.chartColors.text,
+
                 },
                 scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            drawBorder: false,
+                            color: window.chartColors.border,
+                        },
+
+                    }],
                     yAxes: [{
+                        display: true,
+                        gridLines: {
+                            drawBorder: false,
+                            color: window.chartColors.borders,
+                        },
                         ticks: {
                             beginAtZero: true,
                             userCallback: (label, index, labels) => Math.floor(label) === label ? label : undefined,
                         }
-                    }],
-                },
+                    }]
+                }
             }
         });
     });

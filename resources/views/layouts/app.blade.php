@@ -36,6 +36,16 @@
             z-index: -1;
             /* background: none; */
         }
+
+        .btn-primary {
+            background-color: #41A2B9;
+            color: #fff;
+        }
+
+        .btn-info {
+            background-color: #42d4b7;
+            color: #fff;
+        }
     </style>
 </head>
 
