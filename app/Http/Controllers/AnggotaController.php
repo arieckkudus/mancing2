@@ -194,7 +194,6 @@ class AnggotaController extends Controller
 
             return view('dashboard.kartu_anggota', compact('anggota', 'qr'));
         } catch (\Throwable $th) {
-            dd($th);
             abort(404);
         }
     }

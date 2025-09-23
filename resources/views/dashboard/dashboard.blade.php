@@ -17,7 +17,7 @@
         }
     </style>
     <div class="app-content pt-3 p-md-3 p-lg-4">
-        <div class="container-fluid px-0">
+        <div class="container px-0">
             <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
                 <div class="col-6 col-lg-4">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-12 col-lg-8">
-                    <div class="app-card app-card-chart h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                    <div class="app-card app-card-chart" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-header p-3 pb-0" style="border: none;">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-auto">
@@ -110,7 +110,7 @@
                         </div>
                         <div class="app-card-body p-3 pt-lg-2 p-lg-4">
                             <div class="chart-container">
-                                <canvas id="canvas-barchart-domisili"></canvas>
+                                <canvas id="canvas-barchart-domisili" style="max-height: 450px"></canvas>
                             </div>
                         </div>
                     </div>
