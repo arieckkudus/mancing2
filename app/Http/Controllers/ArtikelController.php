@@ -143,6 +143,11 @@ class ArtikelController extends Controller
         return view('front.artikel_detail', compact('detail_artikel', 'artikel_baru'));
     }
 
+    public function form_daftar()
+    {
+        return view('front.form_daftar');
+    }
+
     
 
 }

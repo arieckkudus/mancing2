@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\data_anggota;
+use App\Models\data_komunitas;
 use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
-
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
@@ -16,15 +16,15 @@ use Endroid\QrCode\Builder\Builder;
 
 class AnggotaController extends Controller
 {
-    public function form_daftar()
+    public function form_daftar_individu()
     {
-
+        $komunitas = data_komunitas::pluck('nama_komunitas');
         $regions = json_decode(file_get_contents(public_path('json/region.json')), true);
 
-        return view('front.form_daftar', compact('regions'));
+        return view('front.form_daftar_individu', compact('regions', 'komunitas'));
     }
 
-    public function daftar_anggota(Request $request)
+    public function daftar_anggota_individu(Request $request)
     {
         try {
             $validated = $request->validate([

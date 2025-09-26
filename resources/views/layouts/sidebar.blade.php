@@ -69,6 +69,36 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard.komunitas') }}">
+                        <span class="nav-icon">
+                            {{-- Icon People (Anggota) --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                class="bi bi-people" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                <path fill-rule="evenodd"
+                                    d="M14 13c0 1-1 2-2 2H4c-1 0-2-1-2-2 0-1.086.627-2.177 1.684-2.828C4.748 9.514 6.344 9 8 9s3.252.514 4.316 1.172C13.373 10.823 14 11.914 14 13z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Komunitas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard.komunitas') }}">
+                        <span class="nav-icon">
+                            {{-- Icon People (Anggota) --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                class="bi bi-people" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                <path fill-rule="evenodd"
+                                    d="M14 13c0 1-1 2-2 2H4c-1 0-2-1-2-2 0-1.086.627-2.177 1.684-2.828C4.748 9.514 6.344 9 8 9s3.252.514 4.316 1.172C13.373 10.823 14 11.914 14 13z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Usaha</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard.artikel') }}">
                         <span class="nav-icon">
                             {{-- Icon File Text (Artikel) --}}
