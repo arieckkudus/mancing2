@@ -7,6 +7,18 @@
         color: #ffffffff !important;
         /* teks kuning misalnya */
     }
+
+    .app-card-stat {
+        text-align: left;
+    }
+
+    .stats-type {
+        color: #000 !important;
+    }
+
+    .app-card {
+        border-radius: 8px;
+    }
 </style>
 
 @extends('layouts.app')
