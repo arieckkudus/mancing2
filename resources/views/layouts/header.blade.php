@@ -53,7 +53,7 @@
             <div class="app-branding" style="margin-bottom: 0.5rem; padding: 0px;">
 
                 <div class="app-utility-item app-user-dropdown dropdown w-100" style="padding: 1rem;">
-                    <a id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="display: flex; flex-direction: row; align-items: center; height: 100%; width: 100%;">
+                    <a id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="display: flex; flex-direction: row; align-items: center; width: 100%;">
                         <img src="/assets/images/user.png" alt="user profile" style="margin-right: 12px;">
                         <div style="display: flex; flex-direction: column;">
                             <span style="font-size: 13px; color: #757575; line-height: 12px; margin-bottom: 4px;">PENGURUS</span>
@@ -73,14 +73,10 @@
                         </li>
                     </ul>
                 </div>
-                {{-- <a class="app-logo" href="{{ route('dashboard') }}">
-                    <img class="logo-icon me-2" src="{{ asset('Arsha/assets/img/logo.png') }}" alt="logo">
-                    <span class="logo-text">APRI</span>
-                </a> --}}
             </div>
 
             <div style="padding-inline: 1rem;">
-                <hr>
+                <hr style="margin: 0.5rem;">
             </div>
 
             @include('layouts.sidebar')

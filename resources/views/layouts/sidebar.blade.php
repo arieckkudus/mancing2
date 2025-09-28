@@ -1,3 +1,7 @@
+@php
+    $currentRoute = Route::currentRouteName();
+@endphp
+
 <style>
     .app-nav .nav-item {
         display: flex;
@@ -41,7 +45,8 @@
             </div>
             <ul style="padding-left: 1rem; padding-right: 1rem;">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard' ? 'active' : '' }}"
+                        href="{{ route('dashboard') }}">
                         <span class="nav-icon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +59,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.anggota') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard.anggota' ? 'active' : '' }}"
+                        href="{{ route('dashboard.anggota') }}">
                         <span class="nav-icon">
                             {{-- Icon People (Anggota) --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -69,7 +75,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.komunitas') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard.komunitas' ? 'active' : '' }}"
+                        href="{{ route('dashboard.komunitas') }}">
                         <span class="nav-icon">
                             {{-- Icon People (Anggota) --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -84,7 +91,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.komunitas') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard.komunitas' ? 'active' : '' }}"
+                        href="{{ route('dashboard.komunitas') }}">
                         <span class="nav-icon">
                             {{-- Icon People (Anggota) --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -99,7 +107,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.artikel') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard.artikel' ? 'active' : '' }}"
+                        href="{{ route('dashboard.artikel') }}">
                         <span class="nav-icon">
                             {{-- Icon File Text (Artikel) --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
