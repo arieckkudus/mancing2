@@ -1,4 +1,9 @@
+login mandau
+hasbullah
+332211
+
 yang harus diganti
+
 yaqin
 -yang daftar langsung link ke form daftar individu
 -sidebar dan semua form daftar tampilannya ikut https://mandau.co.id/pasien
@@ -12,7 +17,16 @@ bagian dashboard http://127.0.0.1:8000/dashboard tambahkan :
 -Usaha Aktif
 -Usaha Pending
 
+bagian artikel http://127.0.0.1:8000/artikel ganti :
+headernya ganti sesuai landing page
+
+bagian artikel http://127.0.0.1:8000/artikel/{id}/detail ganti :
+headernya juga
 
 zal
-bagian anggota http://127.0.0.1:8000/dashboard/anggota
 buanyakkk printilan yang belum selesai,bsok harus selesai 80% untuk backend
+bagian anggota http://127.0.0.1:8000/dashboard/anggota
+-tambahkan edit dan delete
+
+semuanya yaaa 
+
