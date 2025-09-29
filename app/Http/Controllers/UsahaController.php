@@ -121,9 +121,9 @@ class UsahaController extends Controller
             $query->whereNull('accept')->orWhere('accept', '');
         }
 
-        $anggota = $query->paginate(10)->appends($request->query());
+        $usaha = $query->paginate(10)->appends($request->query());
 
-        return view('dashboard.usaha', compact('anggota'));
+        return view('dashboard.usaha', compact('usaha'));
     }
 
 }

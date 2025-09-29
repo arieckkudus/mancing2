@@ -64,7 +64,7 @@
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $artikelTampil }}
+                                {{ $artikelTampil1 }}
                             </div>
                             <div class="stats-meta">Tampil</div>
                         </div><!--//app-card-body-->
@@ -77,18 +77,19 @@
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Artikel</h4>
-                            <span style="font-size: 16px; color: #828282;">Judul</span>
+                            <span style="font-size: 16px; color: #828282;"><strong>Judul</strong></span>
                             <ul class="list-group" style="border-radius: 0px;">
-                                <li class="list-group-item px-0"
-                                    style="border-left: none; border-right: none; padding-block: 12px;">An item</li>
-                                <li class="list-group-item px-0"
-                                    style="border-left: none; border-right: none; padding-block: 12px;">A second item</li>
-                                <li class="list-group-item px-0"
-                                    style="border-left: none; border-right: none; padding-block: 12px;">A third item</li>
-                                <li class="list-group-item px-0"
-                                    style="border-left: none; border-right: none; padding-block: 12px;">A fourth item</li>
-                                <li class="list-group-item px-0"
-                                    style="border-left: none; border-right: none; padding-block: 12px;">And a fifth one</li>
+                                @forelse ($artikelTampil as $artikel)
+                                    <li class="list-group-item px-0"
+                                        style="border-left: none; border-right: none; padding-block: 12px;">
+                                        {{ $artikel }} {{-- karena $artikel sudah string --}}
+                                    </li>
+                                @empty
+                                    <li class="list-group-item px-0 text-center"
+                                        style="border-left: none; border-right: none; padding-block: 12px;">
+                                        Belum ada artikel
+                                    </li>
+                                @endforelse
                             </ul>
                             {{-- <div class="stats-figure">{{ $artikelArsip }}</div>
                             <div class="stats-meta">Diarsipkan</div> --}}

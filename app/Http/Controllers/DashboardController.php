@@ -17,7 +17,12 @@ class DashboardController extends Controller
         $persenPending = $total > 0 ? round(($pending / $total) * 100, 1) : 0;
         $persenAktif = $total > 0 ? round(($accept / $total) * 100, 1) : 0;
 
-        $artikelTampil = artikel::whereNotNull('show')->count();
+        $artikelTampil = artikel::whereNotNull('show')
+            ->latest()
+            ->take(10)
+            ->pluck('title');
+
+        $artikelTampil1 = artikel::whereNotNull('show')->count();
         $artikelArsip = artikel::whereNull('show')->count();
 
         $domisili = data_anggota::select('kota_kabupaten', DB::raw('COUNT(*) as total'))
@@ -29,6 +34,6 @@ class DashboardController extends Controller
         $labels = $domisili->take(7)->pluck('kota_kabupaten');
         $counts = $domisili->take(7)->pluck('total');
 
-        return view('dashboard.dashboard', compact('accept', 'pending', 'persenPending', 'persenAktif', 'artikelTampil', 'artikelArsip', 'domisili', 'labels', 'counts'));
+        return view('dashboard.dashboard', compact('accept', 'pending', 'persenPending', 'persenAktif', 'artikelTampil','artikelTampil1', 'artikelArsip', 'domisili', 'labels', 'counts'));
     }
 }

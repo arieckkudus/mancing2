@@ -34,8 +34,8 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ route('landing_page') }}" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#team">Pengurus</a></li>
                 <li><a href="{{ route('artikel') }}">Artikel</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -140,10 +140,20 @@
 
             let html = `
                 <table class="table table-bordered">
-                    <tr><th>Logo</th><td>${finded.logo}</td></tr>
+                    <tr>
+                        <th>Foto</th>
+                        <td>
+                            <img src="/storage/${finded.foto}" 
+                                alt="Foto ${finded.nama_komunitas}" 
+                                style="max-width: 120px; max-height: 120px; object-fit: cover; border-radius: 6px;">
+                        </td>
+                    </tr>
                     <tr><th>Nama Komunitas</th><td>${finded.nama_komunitas}</td></tr>
                     <tr><th>Nama Ketua</th><td>${finded.nama_ketua}</td></tr>
-                    <tr><th>Tanggal Berdiri</th><td>${new Date(finded.tanggal_berdiri).toLocaleDateString()}</td></tr>
+                    <tr>
+                        <th>Tanggal Berdiri</th>
+                        <td>${new Date(finded.tanggal_berdiri).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
+                    </tr>
                     <tr><th>Nama Narahubung</th><td>${finded.nama_narahubung}</td></tr>
                     <tr><th>No Hp</th><td>${finded.no_hp}</td></tr>
                     <tr><th>Email</th><td>${finded.email}</td></tr>
@@ -156,8 +166,14 @@
                     <tr><th>Instagram</th><td>${finded.instagram ?? '-'}</td></tr>
                     <tr><th>Tiktok</th><td>${finded.tiktok ?? '-'}</td></tr>
                     <tr><th>Lainnya</th><td>${finded.lainnya ?? '-'}</td></tr>
-                    <tr><th>Dibuat</th><td>${new Date(finded.created_at).toLocaleString()}</td></tr>
-                    <tr><th>Diupdate</th><td>${new Date(finded.updated_at).toLocaleString()}</td></tr>
+                    <tr>
+                        <th>Dibuat</th>
+                        <td>${new Date(finded.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
+                    </tr>
+                    <tr>
+                        <th>Diupdate</th>
+                        <td>${new Date(finded.updated_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
+                    </tr>
                 </table>
             `;
 

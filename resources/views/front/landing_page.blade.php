@@ -15,7 +15,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
                         <h1 style="color: #4D4D4D;">Asosiasi Pemancingan Indonesia</h1>
-                        <p style="color: #717171;">We are team of talented designers making websites with Bootstrap</p>
+                        <p style="color: #717171;">Platform untuk pendataan dan informasi anggota komunitas pemancingan di seluruh Indonesia</p>
                         <div class="d-flex">
                             <a href="{{ route('form_daftar') }}" class="btn-get-started"
                                 style="border-radius: 2.78px; background-color: #24BADA;">Daftar</a>
@@ -37,37 +37,35 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>About Us</h2>
+                <h2>Tentang kami</h2>
             </div><!-- End Section Title -->
 
             <div class="container">
 
-                <div class="row gy-4">
+                <h2>Tentang Kami</h2>
+            <div class="row gy-4">
 
-                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat.</span></li>
-                            <li><i class="bi bi-check2-circle"></i> <span>Duis aute irure dolor in reprehenderit in
-                                    voluptate velit.</span></li>
-                            <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea
-                                    commodo</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                        <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-                    </div>
-
+                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                    <p>
+                        Asosiasi Pemancingan Indonesia adalah wadah bagi para pemancing untuk terhubung, berbagi informasi, dan
+                        mendata keanggotaan secara lebih mudah dan terorganisir.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check2-circle"></i> <span>Pendataan anggota komunitas pemancing secara online.</span></li>
+                        <li><i class="bi bi-check2-circle"></i> <span>Informasi kegiatan dan event pemancingan di seluruh Indonesia.</span></li>
+                        <li><i class="bi bi-check2-circle"></i> <span>Memperkuat jaringan antar pemancing melalui sistem terpadu.</span></li>
+                    </ul>
                 </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <p>
+                        Dengan adanya sistem ini, anggota dapat mengakses data secara cepat, transparan, dan akurat. Tujuan kami
+                        adalah mendukung perkembangan komunitas pemancingan Indonesia agar lebih solid dan profesional.
+                    </p>
+                    <a href="#" class="read-more"><span>Selengkapnya</span><i class="bi bi-arrow-right"></i></a>
+                </div>
+
+            </div>
 
             </div>
 
@@ -82,13 +80,12 @@
 
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
                     <div class="col-xl-9 text-center text-xl-start">
-                        <h3>Call To Action</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.</p>
+                        <h3>Bergabung Sekarang</h3>
+                        <p>Daftarkan diri Anda sebagai anggota Asosiasi Pemancingan Indonesia untuk mendapatkan informasi terbaru, 
+                        mengikuti event, dan terhubung dengan komunitas pemancing di seluruh Indonesia.</p>
                     </div>
                     <div class="col-xl-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Call To Action</a>
+                        <a class="cta-btn align-middle" href="#">Daftar Anggota</a>
                     </div>
                 </div>
 
@@ -101,8 +98,8 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Team</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <h2>Pengurus</h2>
+                <p>Struktur pengurus Asosiasi Pemancingan Indonesia yang mengelola organisasi dan kegiatan komunitas.</p>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -166,10 +163,10 @@
         <!-- Recent Blog Postst Section -->
         <section id="recent-blog-postst" class="recent-blog-postst section light-background">
 
-            <!-- Section Title -->
+           <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Artikel kami</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <h2>Artikel Kami</h2>
+                <p>Kumpulan artikel seputar dunia pemancingan, tips & trik, serta informasi kegiatan komunitas.</p>
             </div><!-- End Section Title -->
 
             <div class="container">

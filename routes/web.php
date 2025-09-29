@@ -41,6 +41,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/komunitas', [KomunitasController::class, 'show_table_komunitas'])->name('dashboard.komunitas');
     Route::post('/komunitas/{id}/accept', [KomunitasController::class, 'accept'])->name('komunitas.accept');
 
+    Route::get('/usaha', [UsahaController::class, 'show_table_usaha'])->name('dashboard.usaha');
+    Route::post('/usaha/{id}/accept', [UsahaController::class, 'accept'])->name('usaha.accept');
+
     // Artikel
     Route::get('/artikel', [ArtikelController::class, 'show_table_artikel'])->name('dashboard.artikel');
     Route::get('/artikel/form', [ArtikelController::class, 'form_artikel'])->name('form_artikel');

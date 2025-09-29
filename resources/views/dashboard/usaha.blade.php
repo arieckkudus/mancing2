@@ -28,7 +28,7 @@
 @section('content')
     <div class="app-content pt-3 p-md-3 p-lg-4">
         <div class="container-fluid px-0">
-            <h1 class="app-page-title">Table Anggota</h1>
+            <h1 class="app-page-title">Table Usaha</h1>
 
             <div class="card shadow-sm mt-4">
                 <div class="card-body">
@@ -49,7 +49,7 @@
 
                             <select name="accept_filter" class="form-select me-2" onchange="this.form.submit()">
                                 <option value="">-- Semua Data --</option>
-                                <option value="filled" {{ request('accept_filter') == 'filled' ? 'selected' : '' }}>Anggota
+                                <option value="filled" {{ request('accept_filter') == 'filled' ? 'selected' : '' }}>Usaha
                                     Diterima</option>
                                 <option value="null" {{ request('accept_filter') == 'null' ? 'selected' : '' }}>Menunggu
                                     keanggotaan</option>
@@ -59,36 +59,41 @@
 
 
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped align-middle">
-                            <thead class="table-header-green">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-header-green">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Usaha</th>
+                                <th>Tanggal Berdiri</th>
+                                <th>Jenis Usaha</th>
+                                <th>Nomor Izin Usaha</th>
+                                <th>Produk / Jasa Utama</th>
+                                <th>Alamat Usaha</th>
+                                <th>Nomor Telepon Usaha</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($usaha as $key => $item)
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Tempat & Tanggal Lahir</th>
-                                    <th>Alamat Lengkap</th>
-                                    <th>No HP</th>
-                                    <th>Tipe Pendaftaran</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($anggota as $key => $item)
-                                    <tr>
-                                        {{-- Nomor urut mengikuti pagination --}}
-                                        <td>{{ $anggota->firstItem() + $key }}</td>
-                                        <td>{{ $item->nama_lengkap }}</td>
-                                        <td>
-                                            {{ $item->tempat_lahir }},
-                                            {{ \Carbon\Carbon::parse($item->tanggal_lahir)->translatedFormat('d F Y') }}
-                                        </td>
-                                        <td>
-                                            {{ $item->alamat }},
-                                            {{ $item->kota_kabupaten }},
-                                            {{ $item->provinsi }}
-                                        </td>
-                                        <td>{{ $item->no_hp }}</td>
-                                        <td class="text-capitalize">{{ $item->tipe_pendaftaran }}</td>
-                                        <td class="text-center">
+                                    {{-- Nomor urut mengikuti pagination --}}
+                                    <td>{{ $usaha->firstItem() + $key }}</td>
+                                    <td>{{ $item->nama_usaha }}</td>
+                                    <td>
+                                        {{ $item->tanggal_berdiri 
+                                            ? \Carbon\Carbon::parse($item->tanggal_berdiri)->translatedFormat('d F Y') 
+                                            : '-' }}
+                                    </td>
+                                    <td>{{ $item->jenis_usaha ?? '-' }}</td>
+                                    <td>{{ $item->nomor_izin_usaha ?? '-' }}</td>
+                                    <td>{{ $item->produk_jasa ?? '-' }}</td>
+                                    <td>
+                                        {{ $item->alamat_usaha ?? '-' }},
+                                        {{ $item->kota_kabupaten ?? '-' }},
+                                        {{ $item->provinsi ?? '-' }}
+                                    </td>
+                                    <td>{{ $item->nomor_telepon_usaha ?? '-' }}</td>
+                                    <td class="text-center">
                                             <div style="display: flex; align-items: center; column-gap: 0.5rem;">
                                                 {{-- Tombol Lihat (nanti disambung ke detail) --}}
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -111,21 +116,22 @@
                                                         class="btn btn-primary">Kartu</a>
                                                 @endif
                                             </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center">Belum ada data anggota</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">Belum ada data usaha</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
 
-                        {{-- Pagination responsif --}}
-                        <div class="d-flex justify-content-center">
-                            {{ $anggota->links('pagination::bootstrap-5') }}
-                        </div>
+                    {{-- Pagination responsif --}}
+                    <div class="d-flex justify-content-center">
+                        {{ $usaha->links('pagination::bootstrap-5') }}
                     </div>
+                </div>
+
                 </div>
             </div>
 
@@ -155,30 +161,20 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(() => {
-        const anggota = @json($anggota);
+        const anggota = @json($usaha);
 
         $('button[data-show-id]').on('click', ({ currentTarget }) => {
             const finded = anggota.data.find(({ id }) => id == $(currentTarget).data('show-id'));
 
             let html = `
                 <table class="table table-bordered">
-                    <tr>
-                        <th>Foto</th>
-                        <td>
-                            <img src="/storage/${finded.foto}" 
-                                alt="Foto ${finded.nama_lengkap}" 
-                                style="max-width: 120px; max-height: 120px; object-fit: cover; border-radius: 6px;">
-                        </td>
-                    </tr>
+                    <tr><th>Foto</th><td>${finded.foto}</td></tr>
                     <tr><th>Nama Lengkap</th><td>${finded.nama_lengkap}</td></tr>
                     <tr><th>Tempat Lahir</th><td>${finded.tempat_lahir}</td></tr>
-                    <tr>
-                        <th>Tanggal Lahir</th>
-                        <td>${new Date(finded.tanggal_lahir).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
-                    </tr>
+                    <tr><th>Tanggal Lahir</th><td>${new Date(finded.tanggal_lahir).toLocaleDateString()}</td></tr>
                     <tr><th>Gender</th><td>${finded.gender === 'L' ? 'Laki-laki' : 'Perempuan'}</td></tr>
                     <tr><th>Alamat</th><td>${finded.alamat}</td></tr>
-                    <tr><th>Kota/Kabupaten</th><td>${finded.kota_kabupaten}</td></tr>
+                    <tr><th>Kota/Kabupaten</th><td>${finded.kota_kabupaten} (${finded.kode_kabupaten})</td></tr>
                     <tr><th>Provinsi</th><td>${finded.provinsi}</td></tr>
                     <tr><th>Pekerjaan</th><td>${finded.pekerjaan}</td></tr>
                     <tr><th>No HP</th><td>${finded.no_hp}</td></tr>
@@ -192,14 +188,8 @@
                     .join('')}
                         </td>
                     </tr>
-                    <tr>
-                        <th>Dibuat</th>
-                        <td>${new Date(finded.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
-                    </tr>
-                    <tr>
-                        <th>Diupdate</th>
-                        <td>${new Date(finded.updated_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
-                    </tr>
+                    <tr><th>Dibuat</th><td>${new Date(finded.created_at).toLocaleString()}</td></tr>
+                    <tr><th>Diupdate</th><td>${new Date(finded.updated_at).toLocaleString()}</td></tr>
                 </table>
             `;
 

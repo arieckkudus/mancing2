@@ -91,8 +91,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $currentRoute == 'dashboard.komunitas' ? 'active' : '' }}"
-                        href="{{ route('dashboard.komunitas') }}">
+                    <a class="nav-link {{ $currentRoute == 'dashboard.usaha' ? 'active' : '' }}"
+                        href="{{ route('dashboard.usaha') }}">
                         <span class="nav-icon">
                             {{-- Icon People (Anggota) --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"

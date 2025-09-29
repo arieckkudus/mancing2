@@ -42,6 +42,15 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
+                                <label for="status" class="form-label">Status Keanggotaan</label>
+                                <select class="form-control" name="status" id="status">
+                                    <option value="">-- Pilih --</option>
+                                    <option value="anggota">Anggota</option>
+                                    <option value="pengurus">Pengurus</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
                                 <label for="provinsi" class="form-label">Provinsi</label>
                                 <select class="form-select select2" id="provinsi" name="provinsi">
                                     <option value="">-- Pilih Provinsi --</option>
@@ -57,15 +66,6 @@
                                 <label for="kota" class="form-label">Kota/Kabupaten</label>
                                 <select class="form-select select2" id="kota" name="kota_kabupaten">
                                     <option value="">-- Pilih Kota/Kabupaten --</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="status" class="form-label">Status Keanggotaan</label>
-                                <select class="form-control" name="status" id="status">
-                                    <option value="">-- Pilih --</option>
-                                    <option value="anggota">Anggota</option>
-                                    <option value="pengurus">Pengurus</option>
                                 </select>
                             </div>
 

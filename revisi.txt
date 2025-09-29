@@ -1,17 +1,18 @@
 yang harus diganti
+yaqin
+-yang daftar langsung link ke form daftar individu
+-sidebar dan semua form daftar tampilannya ikut https://mandau.co.id/pasien
+-font montserrat
+-kasihin icon" kecil
+-warna konsisten yang ada dilanding page
 
-kode provinsi+kode kabupaten
-DPP64.01
+bagian dashboard http://127.0.0.1:8000/dashboard tambahkan :
+-Komunitas Aktif
+-Komunitas Pending
+-Usaha Aktif
+-Usaha Pending
 
-DPK64.01.20
 
-Anggota = >50
-Pengurus = <49
-tambah
-upload foto
-
-form daftar anggota ganti jadi Asosiasi Pemancingan Indonesia Provinsi 
-
-untuk kartu isinya hanya
-nama,no anggota dan barcode
-isi barcode
+zal
+bagian anggota http://127.0.0.1:8000/dashboard/anggota
+buanyakkk printilan yang belum selesai,bsok harus selesai 80% untuk backend
