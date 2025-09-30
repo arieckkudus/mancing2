@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 @extends('front.layouts.app')
 
 @section('title', 'Landing Page')
@@ -17,7 +14,7 @@
                         <h1 style="color: #4D4D4D;">Asosiasi Pemancingan Indonesia</h1>
                         <p style="color: #717171;">Platform untuk pendataan dan informasi anggota komunitas pemancingan di seluruh Indonesia</p>
                         <div class="d-flex">
-                            <a href="{{ route('form_daftar') }}" class="btn-get-started"
+                            <a href="{{ route('form_daftar_individu') }}" class="btn-get-started"
                                 style="border-radius: 2.78px; background-color: #24BADA;">Daftar</a>
                             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                                 class="glightbox btn-watch-video d-flex align-items-center"><i
@@ -81,7 +78,7 @@
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
                     <div class="col-xl-9 text-center text-xl-start">
                         <h3>Bergabung Sekarang</h3>
-                        <p>Daftarkan diri Anda sebagai anggota Asosiasi Pemancingan Indonesia untuk mendapatkan informasi terbaru, 
+                        <p>Daftarkan diri Anda sebagai anggota Asosiasi Pemancingan Indonesia untuk mendapatkan informasi terbaru,
                         mengikuti event, dan terhubung dengan komunitas pemancing di seluruh Indonesia.</p>
                     </div>
                     <div class="col-xl-3 cta-btn-container text-center">
@@ -215,5 +212,3 @@
 
     </main>
 @endsection
-
-</html>

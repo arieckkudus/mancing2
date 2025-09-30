@@ -136,6 +136,8 @@ class ArtikelController extends Controller
             ->first();
 
         $artikel_baru = DB::table('artikel')
+            ->join('users', 'artikel.user_id', '=', 'users.id')
+            ->select('artikel.*', 'users.name as penerbit','users.role')
             ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get(); // contoh sidebar artikel baru
@@ -148,6 +150,6 @@ class ArtikelController extends Controller
         return view('front.form_daftar');
     }
 
-    
+
 
 }
