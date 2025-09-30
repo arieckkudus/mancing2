@@ -21,6 +21,15 @@
         border-radius: 2.78px;
         background-color: #24BADA;
     }
+
+    .blog-posts .content .read-more a {
+        border-radius: 2.78px;
+        background-color: #24BADA;
+    }
+
+    .recent-posts-widget .post-item h4 a {
+        color: #555;
+    }
 </style>
 
 <header id="header" class="header d-flex align-items-center fixed-top">
@@ -34,8 +43,10 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ route('landing_page') }}" class="active">Home</a></li>
-                <li><a href="#about">Tentang Kami</a></li>
-                <li><a href="#team">Pengurus</a></li>
+                @if (Route::currentRouteName() == 'landing_page')
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#team">Pengurus</a></li>
+                @endif
                 <li><a href="{{ route('artikel') }}">Artikel</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

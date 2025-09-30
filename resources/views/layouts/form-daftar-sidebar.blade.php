@@ -1,3 +1,7 @@
+@php
+    $currentRoute = Route::currentRouteName();
+@endphp
+
 <style>
     .app-nav .nav-item {
         display: flex;
@@ -33,20 +37,23 @@
     }
 </style>
 
-<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1 px-3 py-3">
     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('form_daftar_individu') }}">
+            <a class="nav-link {{ $currentRoute == 'form_daftar_individu' ? 'active' : '' }}"
+                href="{{ route('form_daftar_individu') }}">
                 <span class="nav-link-text">Form Daftar Individu</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('form_daftar_komunitas') }}">
+            <a class="nav-link {{ $currentRoute == 'form_daftar_komunitas' ? 'active' : '' }}"
+                href="{{ route('form_daftar_komunitas') }}">
                 <span class="nav-link-text">Form Daftar Komunitas</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('form_daftar_usaha') }}">
+            <a class="nav-link {{ $currentRoute == 'form_daftar_usaha' ? 'active' : '' }}"
+                href="{{ route('form_daftar_usaha') }}">
                 <span class="nav-link-text">Form Daftar Usaha</span>
             </a>
         </li>
