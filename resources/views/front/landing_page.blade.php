@@ -16,7 +16,7 @@
                         <div class="d-flex">
                             <a href="{{ route('form_daftar_individu') }}" class="btn-get-started"
                                 style="border-radius: 2.78px; background-color: #24BADA;">Daftar</a>
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                            <a href="https://www.youtube.com/watch?v=WX_rCzpZi6E"
                                 class="glightbox btn-watch-video d-flex align-items-center"><i
                                     class="bi bi-play-circle" style="color: #333;"></i><span style="color: #333;">Watch Video</span></a>
                         </div>

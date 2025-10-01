@@ -25,6 +25,7 @@ class data_usaha extends Model
         'jabatan',
         'nomor_telepon_penanggung',
         'email',
+        'accept',
         'signature_usaha',
     ];
 

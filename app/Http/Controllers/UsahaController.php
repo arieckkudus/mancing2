@@ -73,6 +73,7 @@ class UsahaController extends Controller
                 'jabatan' => $validated['jabatan'] ?? null,
                 'nomor_telepon_penanggung' => $validated['nomor_telepon_penanggung'] ?? null,
                 'email' => $validated['email'] ?? null,
+                'accept' => null,
                 'signature_usaha' => $signaturePath,
             ]);
 
@@ -92,7 +93,7 @@ class UsahaController extends Controller
     public function accept($id)
     {
         $anggota = data_usaha::findOrFail($id);
-        $anggota->accept = 'diterima';
+        $anggota->accept = 'accept';
         $anggota->save();
 
         return redirect()->back()->with('success', 'Usaha / Industri berhasil diterima!');

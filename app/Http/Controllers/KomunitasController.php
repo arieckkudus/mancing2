@@ -97,7 +97,7 @@ class KomunitasController extends Controller
     public function accept($id)
     {
         $anggota = data_komunitas::findOrFail($id);
-        $anggota->accept = 'diterima';
+        $anggota->accept = 'accept';
         $anggota->save();
 
         return redirect()->back()->with('success', 'Komunitas berhasil diterima!');

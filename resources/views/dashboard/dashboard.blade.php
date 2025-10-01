@@ -24,15 +24,15 @@
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Anggota Aktif</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $accept }}
+                                {{ $acceptAnggota }}
                             </div>
                             <div class="stats-meta">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-                                </svg> {{ $accept > 0 ? round(($accept / ($accept + $accept)) * 100, 1) : 0 }}%
-                                {{ $accept > 0 ? $persenAktif . '% anggota aktif' : 'Semua sudah diterima' }}
+                                </svg> {{ $acceptAnggota > 0 ? round(($acceptAnggota / ($acceptAnggota + $acceptAnggota)) * 100, 1) : 0 }}%
+                                {{ $acceptAnggota > 0 ? $persenAktifAnggota . '% anggota aktif' : 'Semua sudah diterima' }}
                             </div>
                         </div>
                         <a class="app-card-link-mask" href="#"></a>
@@ -44,7 +44,7 @@
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Menunggu Keanggotaan</h4>
                             <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $pending }}
+                                {{ $pendingAnggota }}
                             </div>
                             <div class="stats-meta">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down"
@@ -52,7 +52,7 @@
                                     <path fill-rule="evenodd"
                                         d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
                                 </svg>
-                                {{ $pending > 0 ? $persenPending . '% anggota menunggu' : 'Semua sudah diterima' }}
+                                {{ $pendingAnggota > 0 ? $persenPendingAnggota . '% anggota menunggu' : 'Semua sudah diterima' }}
                             </div>
                         </div>
                         <a class="app-card-link-mask" href="#"></a>
@@ -71,6 +71,49 @@
                         <a class="app-card-link-mask" href="#"></a>
                     </div>
                 </div><!--//col-->
+
+                <!-- komunitas aktif -->
+                <div class="col-6 col-lg-4">
+                    <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type" style="margin-bottom: 16px;">Komunitas Aktif</h4>
+                            <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
+                                {{ $acceptKomunitas }}
+                            </div>
+                            <div class="stats-meta">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                                </svg> {{ $acceptKomunitas > 0 ? round(($acceptKomunitas / ($acceptKomunitas + $acceptKomunitas)) * 100, 1) : 0 }}%
+                                {{ $acceptKomunitas > 0 ? $persenAktifKomunitas . '% komunitas aktif' : 'Semua sudah diterima' }}
+                            </div>
+                        </div>
+                        <a class="app-card-link-mask" href="#"></a>
+                    </div>
+                </div>
+
+                <!-- menunggu komunitas -->
+                <div class="col-6 col-lg-4">
+                    <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type" style="margin-bottom: 16px;">Menunggu Aktivasi Komunitas</h4>
+                            <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
+                                {{ $pendingKomunitas }}
+                            </div>
+                            <div class="stats-meta">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                                </svg> {{ $pendingKomunitas > 0 ? round(($pendingKomunitas / ($pendingKomunitas + $pendingKomunitas)) * 100, 1) : 0 }}%
+                                {{ $pendingKomunitas > 0 ? $persenPendingKomunitas . '% anggota aktif' : 'Semua sudah diterima' }}
+                            </div>
+                        </div>
+                        <a class="app-card-link-mask" href="#"></a>
+                    </div>
+                </div>
+                
             </div><!--//row-->
             <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
                 <div class="col-6 col-lg-4">
@@ -103,7 +146,7 @@
                         <div class="app-card-header p-3 pb-0" style="border: none;">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-auto">
-                                    <h4 style="font-size: 1rem;">Domisili Anggota</h4>
+                                    <h4 style="font-size: 1rem;">Domisili Anggota Terbanyak</h4>
                                 </div>
                                 <div class="col-auto">
                                 </div>
@@ -117,6 +160,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 @endsection

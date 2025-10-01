@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('nomor_telepon_penanggung', 20)->nullable();
             $table->string('email')->nullable();
+            $table->string('accept')->nullable();
             $table->longText('signature_usaha')->nullable();
             $table->timestamps();
         });
