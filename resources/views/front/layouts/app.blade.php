@@ -26,7 +26,9 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('Arsha/assets/css/main.css') }}" rel="stylesheet">
-  
+
+  <link href="{{ asset('fonts/montserrat.css') }}" rel="stylesheet">
+
 </head>
 
 <body class="index-page">

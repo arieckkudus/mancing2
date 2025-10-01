@@ -22,6 +22,11 @@
         background-color: #24BADA;
     }
 
+    .header a.btn-getstarted:hover {
+        border-radius: 2.78px;
+        background-color: #1b8da6;
+    }
+
     .blog-posts .content .read-more a {
         border-radius: 2.78px;
         background-color: #24BADA;

@@ -56,7 +56,7 @@
                                             </div>
 
                                             <div class="content">
-                                                <p class="clamp-text">{{ strip_tags($item->content) }}</p>
+                                                <p class="clamp-text" style="word-break: break-word;">{{ strip_tags('$item->content') }}</p>
                                                 <div class="read-more">
                                                     <a href="{{ route('artikel.detail', $item->id) }}">Lanjut baca</a>
                                                 </div>
