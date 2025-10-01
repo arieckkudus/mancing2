@@ -17,9 +17,9 @@
         }
     </style>
     <div class="app-content pt-3 p-md-3 p-lg-4">
-        <div class="container px-0">
+        <div class="container-fluid px-0">
             <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Anggota Aktif</h4>
@@ -31,7 +31,8 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-                                </svg> {{ $acceptAnggota > 0 ? round(($acceptAnggota / ($acceptAnggota + $acceptAnggota)) * 100, 1) : 0 }}%
+                                </svg>
+                                {{ $acceptAnggota > 0 ? round(($acceptAnggota / ($acceptAnggota + $acceptAnggota)) * 100, 1) : 0 }}%
                                 {{ $acceptAnggota > 0 ? $persenAktifAnggota . '% anggota aktif' : 'Semua sudah diterima' }}
                             </div>
                         </div>
@@ -39,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Menunggu Keanggotaan</h4>
@@ -59,21 +60,8 @@
                     </div><!--//app-card-->
                 </div><!--//col-->
 
-                <div class="col-6 col-lg-4">
-                    <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
-                        <div class="app-card-body p-3 p-lg-4">
-                            <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
-                            <div class="stats-figure" style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
-                                {{ $artikelTampil1 }}
-                            </div>
-                            <div class="stats-meta">Tampil</div>
-                        </div><!--//app-card-body-->
-                        <a class="app-card-link-mask" href="#"></a>
-                    </div>
-                </div><!--//col-->
-
                 <!-- komunitas aktif -->
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Komunitas Aktif</h4>
@@ -85,7 +73,8 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-                                </svg> {{ $acceptKomunitas > 0 ? round(($acceptKomunitas / ($acceptKomunitas + $acceptKomunitas)) * 100, 1) : 0 }}%
+                                </svg>
+                                {{ $acceptKomunitas > 0 ? round(($acceptKomunitas / ($acceptKomunitas + $acceptKomunitas)) * 100, 1) : 0 }}%
                                 {{ $acceptKomunitas > 0 ? $persenAktifKomunitas . '% komunitas aktif' : 'Semua sudah diterima' }}
                             </div>
                         </div>
@@ -94,7 +83,7 @@
                 </div>
 
                 <!-- menunggu komunitas -->
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type" style="margin-bottom: 16px;">Menunggu Aktivasi Komunitas</h4>
@@ -106,61 +95,113 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-                                </svg> {{ $pendingKomunitas > 0 ? round(($pendingKomunitas / ($pendingKomunitas + $pendingKomunitas)) * 100, 1) : 0 }}%
+                                </svg>
+                                {{ $pendingKomunitas > 0 ? round(($pendingKomunitas / ($pendingKomunitas + $pendingKomunitas)) * 100, 1) : 0 }}%
                                 {{ $pendingKomunitas > 0 ? $persenPendingKomunitas . '% anggota aktif' : 'Semua sudah diterima' }}
                             </div>
                         </div>
                         <a class="app-card-link-mask" href="#"></a>
                     </div>
                 </div>
-                
-            </div><!--//row-->
+            </div>
+
             <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
-                <div class="col-6 col-lg-4">
-                    <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
-                        <div class="app-card-body p-3 p-lg-4">
-                            <h4 class="stats-type" style="margin-bottom: 16px;">Artikel</h4>
-                            <span style="font-size: 16px; color: #828282;"><strong>Judul</strong></span>
-                            <ul class="list-group" style="border-radius: 0px;">
-                                @forelse ($artikelTampil as $artikel)
-                                    <li class="list-group-item px-0"
-                                        style="border-left: none; border-right: none; padding-block: 12px;">
-                                        {{ $artikel }} {{-- karena $artikel sudah string --}}
-                                    </li>
-                                @empty
-                                    <li class="list-group-item px-0 text-center"
-                                        style="border-left: none; border-right: none; padding-block: 12px;">
-                                        Belum ada artikel
-                                    </li>
-                                @endforelse
-                            </ul>
-                            {{-- <div class="stats-figure">{{ $artikelArsip }}</div>
-                            <div class="stats-meta">Diarsipkan</div> --}}
+                <div class="col-lg-3">
+                    <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px; height: 100%;">
+                        <div class="col">
+                            <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                                <div class="app-card-body p-3 p-lg-4">
+                                    <h4 class="stats-type" style="margin-bottom: 16px;">Artikel</h4>
+                                    <span style="font-size: 16px; color: #828282;"><strong>Judul</strong></span>
+                                    <ul class="list-group" style="border-radius: 0px;">
+                                        @forelse ($artikelTampil as $artikel)
+                                            <li class="list-group-item px-0"
+                                                style="border-left: none; border-right: none; padding-block: 12px;">
+                                                {{ $artikel }} {{-- karena $artikel sudah string --}}
+                                            </li>
+                                        @empty
+                                            <li class="list-group-item px-0 text-center"
+                                                style="border-left: none; border-right: none; padding-block: 12px;">
+                                                Belum ada artikel
+                                            </li>
+                                        @endforelse
+                                    </ul>
+                                    {{-- <div class="stats-figure">{{ $artikelArsip }}</div>
+                                    <div class="stats-meta">Diarsipkan</div> --}}
+                                </div>
+                                <a class="app-card-link-mask" href="#"></a>
+                            </div>
                         </div>
-                        <a class="app-card-link-mask" href="#"></a>
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-8">
-                    <div class="app-card app-card-chart" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
-                        <div class="app-card-header p-3 pb-0" style="border: none;">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <h4 style="font-size: 1rem;">Domisili Anggota Terbanyak</h4>
-                                </div>
-                                <div class="col-auto">
-                                </div>
+                <div class="col-lg-9">
+                    <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px; margin-bottom: 32px;">
+                        <div class="col-lg-4">
+                            <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                                <div class="app-card-body p-3 p-lg-4">
+                                    <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
+                                    <div class="stats-figure"
+                                        style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
+                                        {{ $artikelTampil1 }}
+                                    </div>
+                                    <div class="stats-meta">Tampil</div>
+                                </div><!--//app-card-body-->
+                                <a class="app-card-link-mask" href="#"></a>
                             </div>
-                        </div>
-                        <div class="app-card-body p-3 pt-lg-2 p-lg-4">
-                            <div class="chart-container">
-                                <canvas id="canvas-barchart-domisili" style="max-height: 450px"></canvas>
+                        </div><!--//col-->
+
+                        <div class="col-lg-4">
+                            <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                                <div class="app-card-body p-3 p-lg-4">
+                                    <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
+                                    <div class="stats-figure"
+                                        style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
+                                        {{ $artikelTampil1 }}
+                                    </div>
+                                    <div class="stats-meta">Tampil</div>
+                                </div><!--//app-card-body-->
+                                <a class="app-card-link-mask" href="#"></a>
+                            </div>
+                        </div><!--//col-->
+
+                        <div class="col-lg-4">
+                            <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                                <div class="app-card-body p-3 p-lg-4">
+                                    <h4 class="stats-type" style="margin-bottom: 16px;">Artikel Tampil</h4>
+                                    <div class="stats-figure"
+                                        style="margin-bottom: 16px; font-size: 40px; font-weight: bold;">
+                                        {{ $artikelTampil1 }}
+                                    </div>
+                                    <div class="stats-meta">Tampil</div>
+                                </div><!--//app-card-body-->
+                                <a class="app-card-link-mask" href="#"></a>
+                            </div>
+                        </div><!--//col-->
+                    </div>
+
+                    <div class="row" style="--bs-gutter-x: 32px; --bs-gutter-y: 32px;">
+                        <div class="col-12">
+                            <div class="app-card app-card-chart" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
+                                <div class="app-card-header p-3 pb-0" style="border: none;">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col-auto">
+                                            <h4 style="font-size: 1rem;">Domisili Anggota Terbanyak</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="app-card-body p-3 pt-lg-2 p-lg-4">
+                                    <div class="chart-container">
+                                        <canvas id="canvas-barchart-domisili" style="max-height: 450px"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 @endsection

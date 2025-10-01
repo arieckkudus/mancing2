@@ -18,7 +18,7 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('dashboard-assets/assets/css/portal.css') }}">
-
+    <link href="{{ asset('fonts/montserrat.css') }}" rel="stylesheet">
     <style>
         body.app::before {
             content: "";
@@ -49,7 +49,7 @@
     </style>
 </head>
 
-<body class="app">
+<body class="app index-page">
     @include('layouts.form-daftar-header')
 
     <div class="app-wrapper">

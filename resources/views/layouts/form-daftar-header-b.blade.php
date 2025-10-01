@@ -14,19 +14,13 @@
         text-decoration: none;
     }
 
-    .index-page .header .logo {
-        text-decoration: none;
-    }
-
     .index-page .header .sitename {
         color: #333;
-        text-decoration: none;
     }
 
     .header a.btn-getstarted {
         border-radius: 2.78px;
         background-color: #24BADA;
-        text-decoration: none;
     }
 
     .header a.btn-getstarted:hover {
@@ -66,5 +60,12 @@
 
         <a class="btn-getstarted" href="{{ route('login') }}">Login</a>
 
+    </div>
+
+    <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+            @include('layouts.form-daftar-sidebar')
+        </div>
     </div>
 </header>
