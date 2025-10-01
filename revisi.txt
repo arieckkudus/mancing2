@@ -5,13 +5,13 @@ hasbullah
 yang harus diganti
 
 yaqin
--yang daftar langsung link ke form daftar individu
 -sidebar dan semua form daftar tampilannya ikut https://mandau.co.id/pasien
 -font montserrat
 -kasihin icon" kecil
 -warna konsisten yang ada dilanding page
 
 bagian dashboard http://127.0.0.1:8000/dashboard tambahkan :
+-Domisili Anggota bagian kota/kabupaten hilangin agar tidak miring
 -Komunitas Aktif
 -Komunitas Pending
 -Usaha Aktif

@@ -21,7 +21,7 @@ class UsahaController extends Controller
         try {
             $validated = $request->validate([
                 'nama_usaha' => 'required|string|max:255',
-                'logo_usaha' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'logo_usaha' => 'required|image|mimes:jpeg,png,jpg|max:2048',
                 'tanggal_berdiri' => 'nullable|date',
                 'jenis_usaha' => 'nullable|string|max:255',
                 'nomor_izin_usaha' => 'nullable|string|max:255',
@@ -124,6 +124,32 @@ class UsahaController extends Controller
         $usaha = $query->paginate(10)->appends($request->query());
 
         return view('dashboard.usaha', compact('usaha'));
+    }
+
+    public function hapus_usaha(Request $request)
+    {
+        try {
+            $usaha = data_usaha::findOrFail($request->id);
+
+            // hapus foto
+            if ($usaha->foto && \Storage::disk('public')->exists($usaha->foto)) {
+                \Storage::disk('public')->delete($usaha->foto);
+            }
+
+            // hapus signature
+            if ($usaha->signature && \Storage::disk('public')->exists($usaha->signature_usaha)) {
+                \Storage::disk('public')->delete($usaha->signature_usaha);
+            }
+
+            $usaha->delete();
+
+            Alert::success('Berhasil', 'Usaha telah dihapus.');
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect()->back();
+        }
     }
 
 }

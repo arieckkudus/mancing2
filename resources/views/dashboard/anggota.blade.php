@@ -90,13 +90,13 @@
                                         <td class="text-capitalize">{{ $item->tipe_pendaftaran }}</td>
                                         <td class="text-center">
                                             <div style="display: flex; align-items: center; column-gap: 0.5rem;">
-                                                {{-- Tombol Lihat (nanti disambung ke detail) --}}
+                                                {{-- Tombol Lihat --}}
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     data-bs-target="#showDataModal" data-show-id="{{ $item->id }}">
                                                     Lihat
                                                 </button>
 
-                                                {{-- Tampilkan tombol Terima hanya jika accept masih kosong --}}
+                                                {{-- Tombol Terima atau Kartu --}}
                                                 @if (empty($item->accept))
                                                     <form action="{{ route('anggota.accept', $item->id) }}" method="POST"
                                                         class="d-inline">
@@ -110,8 +110,22 @@
                                                     <a href="{{ route('kartu_anggota', $item->id) }}"
                                                         class="btn btn-primary">Kartu</a>
                                                 @endif
+
+                                                {{-- Tombol Delete --}}
+                                                <form id="form-delete-{{ $item->id }}"
+                                                    action="{{ route('daftar-anggota.delete') }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <button type="button" class="btn btn-danger btn-delete"
+                                                        data-id="{{ $item->id }}">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -143,7 +157,8 @@
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Edit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -153,6 +168,30 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.btn-delete').forEach(function (button) {
+            button.addEventListener('click', function () {
+                let id = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Yakin hapus?',
+                    text: "Data yang dihapus tidak bisa dikembalikan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('form-delete-' + id).submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 <script>
     $(document).ready(() => {
         const anggota = @json($anggota);

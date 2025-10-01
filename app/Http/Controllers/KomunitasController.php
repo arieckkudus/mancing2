@@ -37,7 +37,7 @@ class KomunitasController extends Controller
                 'tiktok' => 'nullable|string|max:255',
                 'lainnya' => 'nullable|string|max:255',
                 'signature' => 'nullable|string',
-                'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             ]);
 
             // --- proses signature ---
@@ -129,6 +129,32 @@ class KomunitasController extends Controller
         $anggota = $query->paginate(10)->appends($request->query());
 
         return view('dashboard.komunitas', compact('anggota'));
+    }
+
+    public function hapus_komunitas(Request $request)
+    {
+        try {
+            $komunitas = data_komunitas::findOrFail($request->id);
+
+            // hapus foto
+            if ($komunitas->foto && \Storage::disk('public')->exists($komunitas->foto)) {
+                \Storage::disk('public')->delete($komunitas->foto);
+            }
+
+            // hapus signature
+            if ($komunitas->signature && \Storage::disk('public')->exists($komunitas->signature)) {
+                \Storage::disk('public')->delete($komunitas->signature);
+            }
+
+            $komunitas->delete();
+
+            Alert::success('Berhasil', 'Komunitas telah dihapus.');
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect()->back();
+        }
     }
 
 }

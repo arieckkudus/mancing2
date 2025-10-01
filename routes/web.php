@@ -34,14 +34,19 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     // Anggota
     Route::get('/anggota', [AnggotaController::class, 'show_table_anggota'])->name('dashboard.anggota');
+    Route::get('/form-anggota/edit', [AnggotaController::class, 'show_edit_anggota'])->name('dashboard.anggota.edit');
+    Route::post('/anggota/edit', [AnggotaController::class, 'edit_anggota'])->name('daftar-anggota.edit');
+    Route::post('/anggota/delete', [AnggotaController::class, 'hapus_anggota'])->name('daftar-anggota.delete');
     Route::post('/anggota/{id}/accept', [AnggotaController::class, 'accept'])->name('anggota.accept');
     Route::get('/kartu_anggota/{id}', [AnggotaController::class, 'show_kartu_anggota'])->name('kartu_anggota');
 
     //Komunitas
     Route::get('/komunitas', [KomunitasController::class, 'show_table_komunitas'])->name('dashboard.komunitas');
+    Route::post('/form-daftar-individu/delete', [KomunitasController::class, 'hapus_komunitas'])->name('daftar-komunitas.delete');
     Route::post('/komunitas/{id}/accept', [KomunitasController::class, 'accept'])->name('komunitas.accept');
 
     Route::get('/usaha', [UsahaController::class, 'show_table_usaha'])->name('dashboard.usaha');
+    Route::post('/usaha/delete', [UsahaController::class, 'hapus_anggota'])->name('daftar-usaha.delete');
     Route::post('/usaha/{id}/accept', [UsahaController::class, 'accept'])->name('usaha.accept');
 
     // Artikel

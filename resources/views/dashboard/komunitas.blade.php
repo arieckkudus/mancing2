@@ -88,6 +88,18 @@
                                                     <a href="{{ route('kartu_anggota', $item->id) }}"
                                                         class="btn btn-primary">Kartu</a>
                                                 @endif
+
+                                                {{-- Tombol Delete --}}
+                                                <form id="form-delete-{{ $item->id }}"
+                                                    action="{{ route('daftar-komunitas.delete') }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <button type="button" class="btn btn-danger btn-delete"
+                                                        data-id="{{ $item->id }}">
+                                                        Hapus
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -106,7 +118,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -121,6 +132,7 @@
                     ...
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Edit</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -131,6 +143,31 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.btn-delete').forEach(function (button) {
+            button.addEventListener('click', function () {
+                let id = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Yakin hapus?',
+                    text: "Data yang dihapus tidak bisa dikembalikan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('form-delete-' + id).submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 <script>
     $(document).ready(() => {
         const anggota = @json($anggota);
