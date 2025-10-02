@@ -107,11 +107,20 @@ class UsahaController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->where('nama_komunitas', 'like', "%{$search}%")
-                    ->orWhere('nama_ketua', 'like', "%{$search}%")
-                    ->orWhere('alamat', 'like', "%{$search}%")
-                    ->orWhere('kota_kabupaten', 'like', "%{$search}%")
-                    ->orWhere('provinsi', 'like', "%{$search}%");
+                $q->where('nama_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('jenis_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('nomor_izin_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('produk_jasa', 'ilike', "%{$search}%")
+                    ->orWhere('alamat_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('kota_kabupaten', 'ilike', "%{$search}%")
+                    ->orWhere('provinsi', 'ilike', "%{$search}%")
+                    ->orWhere('nama_penanggung_jawab', 'ilike', "%{$search}%")
+                    ->orWhere('jabatan', 'ilike', "%{$search}%")
+                    ->orWhere('nomor_telepon_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('email_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('website_usaha', 'ilike', "%{$search}%")
+                    ->orWhere('nomor_telepon_penanggung', 'ilike', "%{$search}%")
+                    ->orWhere('email', 'ilike', "%{$search}%");
             });
         }
 

@@ -111,11 +111,11 @@ class KomunitasController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->where('nama_komunitas', 'like', "%{$search}%")
-                    ->orWhere('nama_ketua', 'like', "%{$search}%")
-                    ->orWhere('alamat', 'like', "%{$search}%")
-                    ->orWhere('kota_kabupaten', 'like', "%{$search}%")
-                    ->orWhere('provinsi', 'like', "%{$search}%");
+                $q->where('nama_komunitas', 'ilike', "%{$search}%")
+                    ->orWhere('nama_ketua', 'ilike', "%{$search}%")
+                    ->orWhere('alamat', 'ilike', "%{$search}%")
+                    ->orWhere('kota_kabupaten', 'ilike', "%{$search}%")
+                    ->orWhere('provinsi', 'ilike', "%{$search}%");
             });
         }
 

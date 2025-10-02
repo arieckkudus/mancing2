@@ -32,12 +32,12 @@ class AnggotaController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->where('nama_lengkap', 'like', "%{$search}%")
-                    ->orWhere('tempat_lahir', 'like', "%{$search}%")
-                    ->orWhere('tanggal_lahir', 'like', "%{$search}%")
-                    ->orWhere('alamat', 'like', "%{$search}%")
-                    ->orWhere('kota_kabupaten', 'like', "%{$search}%")
-                    ->orWhere('provinsi', 'like', "%{$search}%");
+                $q->where('nama_lengkap', 'ilike', "%{$search}%")
+                    ->orWhere('tempat_lahir', 'ilike', "%{$search}%")
+                    ->orWhere('tanggal_lahir', 'ilike', "%{$search}%")
+                    ->orWhere('alamat', 'ilike', "%{$search}%")
+                    ->orWhere('kota_kabupaten', 'ilike', "%{$search}%")
+                    ->orWhere('provinsi', 'ilike', "%{$search}%");
             });
         }
 

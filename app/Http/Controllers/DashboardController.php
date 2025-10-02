@@ -40,10 +40,9 @@ class DashboardController extends Controller
         $artikelTampil = artikel::whereNotNull('show')
             ->latest()
             ->take(10)
-            ->pluck('title');
+            ->get(['title', 'view']); // ambil title & view
 
         $artikelTampil1 = artikel::whereNotNull('show')->count();
-        $artikelArsip = artikel::whereNull('show')->count();
 
         // ===== domisili anggota =====
         $domisili = data_anggota::select('kota_kabupaten', DB::raw('COUNT(*) as total'))
@@ -74,7 +73,6 @@ class DashboardController extends Controller
             // artikel & domisili
             'artikelTampil',
             'artikelTampil1',
-            'artikelArsip',
             'domisili',
             'labels',
             'counts'

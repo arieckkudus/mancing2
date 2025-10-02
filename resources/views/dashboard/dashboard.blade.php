@@ -112,20 +112,31 @@
                             <div class="app-card app-card-stat h-100" style="box-shadow: 0 4px 12px rgba(0,0,0,0.25)">
                                 <div class="app-card-body p-3 p-lg-4">
                                     <h4 class="stats-type" style="margin-bottom: 16px;">Artikel</h4>
-                                    <span style="font-size: 16px; color: #828282;"><strong>Judul</strong></span>
-                                    <ul class="list-group" style="border-radius: 0px;">
-                                        @forelse ($artikelTampil as $artikel)
-                                            <li class="list-group-item px-0"
-                                                style="border-left: none; border-right: none; padding-block: 12px;">
-                                                {{ $artikel }} {{-- karena $artikel sudah string --}}
-                                            </li>
-                                        @empty
-                                            <li class="list-group-item px-0 text-center"
-                                                style="border-left: none; border-right: none; padding-block: 12px;">
-                                                Belum ada artikel
-                                            </li>
-                                        @endforelse
-                                    </ul>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 75%;">Judul</th>
+                                                <th style="width: 25%;">Dibaca</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($artikelTampil as $artikel)
+                                                <tr>
+                                                    <td
+                                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">
+                                                        {{ $artikel->title }}
+                                                    </td>
+                                                    <td>{{ $artikel->view }}</td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="2" class="text-center">Belum ada artikel</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+
+
                                     {{-- <div class="stats-figure">{{ $artikelArsip }}</div>
                                     <div class="stats-meta">Diarsipkan</div> --}}
                                 </div>

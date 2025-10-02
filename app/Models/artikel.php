@@ -13,6 +13,7 @@ class artikel extends Model
         'content',
         'pict',
         'show',
+        'view',
         'user_id',
     ];
 

@@ -5,11 +5,7 @@
             style="height: 100%; border: 1px solid #ddd; background-color: #fff; border-end-start-radius: 10px;">
             <div class="app-header-content d-flex align-items-center justify-content-between w-100">
                 <h1 class="app-page-title mb-0 ms-2">Dashboard Admin</h1>
-                <div class="d-flex align-items-center" style="width: 320px;">
-                    <button type="button" class="btn me-2" style="background-color: #4A8E9C; color: #fff;">...</button>
-                    <button type="button" class="btn me-2"
-                        style="background-color: #4A8E9C; color: #fff;">Share</button>
-                </div>
+
                 {{-- <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
                         <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
@@ -53,10 +49,12 @@
             <div class="app-branding" style="margin-bottom: 0.5rem; padding: 0px;">
 
                 <div class="app-utility-item app-user-dropdown dropdown w-100" style="padding: 1rem;">
-                    <a id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="display: flex; flex-direction: row; align-items: center; width: 100%;">
+                    <a id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
+                        style="display: flex; flex-direction: row; align-items: center; width: 100%;">
                         <img src="/assets/images/user.png" alt="user profile" style="margin-right: 12px;">
                         <div style="display: flex; flex-direction: column;">
-                            <span style="font-size: 13px; color: #757575; line-height: 12px; margin-bottom: 4px;">PENGURUS</span>
+                            <span
+                                style="font-size: 13px; color: #757575; line-height: 12px; margin-bottom: 4px;">PENGURUS</span>
                             <span style="font-size: 16px; color: #000; line-height: 20px;">Hamdani Hasan</span>
                         </div>
                     </a>
@@ -92,10 +90,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"
-                                style="width: 100%; padding: 0.875rem 1rem; padding-left: 2rem; color: #D55F5A;">
-                                <span class="nav-link-text">Logout Account</span>
-                            </a>
+                            <form action="{{ route('logout') }}" method="POST" style="width: 100%;">
+                                @csrf
+                                <button type="submit"
+                                    style="width: 100%; padding: 0.875rem 1rem; padding-left: 2rem; color: #D55F5A; background: none; border: none; text-align: left;">
+                                    <span class="nav-link-text">Logout Account</span>
+                                </button>
+                            </form>
+
                         </li>
                     </ul><!--//footer-menu-->
                 </nav>

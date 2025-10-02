@@ -10,7 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ArtikelController extends Controller
 {
-    public function landing_page(){
+    public function landing_page()
+    {
 
         $artikel_bawah = DB::table('artikel')
             ->join('users', 'artikel.user_id', '=', 'users.id')
@@ -58,14 +59,14 @@ class ArtikelController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->where('artikel.title', 'like', "%{$search}%")
-                ->orWhere('users.name', 'like', "%{$search}%");
+                $q->where('artikel.title', 'ilike', "%{$search}%")
+                    ->orWhere('users.name', 'ilike', "%{$search}%");
             });
         }
 
         $artikel = $query->orderBy('artikel.created_at', 'desc')
-                        ->paginate(10)
-                        ->appends($request->query());
+            ->paginate(10)
+            ->appends($request->query());
 
         return view('dashboard.artikel', compact('artikel'));
     }
@@ -74,24 +75,24 @@ class ArtikelController extends Controller
     {
         try {
             $validated = $request->validate([
-                'title'   => 'required|string|max:255',
+                'title' => 'required|string|max:255',
                 'content' => 'nullable|string',
-                'pict'    => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-                'id'      => 'nullable|exists:artikel,id', // kalau update
+                'pict' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+                'id' => 'nullable|exists:artikel,id', // kalau update
             ]);
 
             // siapkan data
             $data = [
-                'title'   => $validated['title'],
+                'title' => $validated['title'],
                 'content' => $validated['content'] ?? null,
-                'show'    => 'tampil',
+                'show' => 'tampil',
                 'user_id' => Auth::id(),
             ];
 
             // handle upload gambar
             if ($request->hasFile('pict')) {
-                $file      = $request->file('pict');
-                $filename  = time() . '_' . $file->getClientOriginalName();
+                $file = $request->file('pict');
+                $filename = time() . '_' . $file->getClientOriginalName();
 
                 $file->move(public_path('storage/artikel'), $filename);
                 $data['pict'] = 'storage/artikel/' . $filename;
@@ -129,21 +130,27 @@ class ArtikelController extends Controller
 
     public function detail_artikel($id)
     {
+        // Tambah jumlah view
+        DB::table('artikel')->where('id', $id)->increment('view');
+
+        // Ambil data artikel
         $detail_artikel = DB::table('artikel')
             ->join('users', 'artikel.user_id', '=', 'users.id')
-            ->select('artikel.*', 'users.name as penerbit','users.role')
+            ->select('artikel.*', 'users.name as penerbit', 'users.role')
             ->where('artikel.id', $id)
             ->first();
 
+        // Sidebar artikel terbaru
         $artikel_baru = DB::table('artikel')
             ->join('users', 'artikel.user_id', '=', 'users.id')
-            ->select('artikel.*', 'users.name as penerbit','users.role')
+            ->select('artikel.*', 'users.name as penerbit', 'users.role')
             ->orderBy('created_at', 'desc')
             ->limit(5)
-            ->get(); // contoh sidebar artikel baru
+            ->get();
 
         return view('front.artikel_detail', compact('detail_artikel', 'artikel_baru'));
     }
+
 
     public function form_daftar()
     {

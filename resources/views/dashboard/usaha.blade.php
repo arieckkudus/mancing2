@@ -37,7 +37,7 @@
                         {{-- Form Pencarian --}}
                         <form action="{{ route('dashboard.anggota') }}" method="GET" class="d-flex mb-2"
                             style="max-width: 300px;">
-                            <input type="text" name="search" class="form-control me-2" placeholder="Cari anggota..."
+                            <input type="text" name="search" class="form-control me-2" placeholder="Cari Usaha..."
                                 value="{{ request('search') }}">
                             <button type="submit" class="btn btn-primary btn-sm">Cari</button>
                         </form>
